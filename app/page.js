@@ -10,12 +10,14 @@ export default async function Home() {
   const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`) 
   const res = await data.json()
 
+  console.log(res.results.length)
   return (
     <main>
       <Header />
       <UpcomingMovies/>
       <Trending />
       <Loading />
+      {res.results.length > 0 &&
       <div className='movie-list-div'>
       <h3>Popular movies</h3>
         <div className="movie-list"> 
@@ -30,8 +32,9 @@ export default async function Home() {
             genres={movie}
           /> 
         )}
-        </div>
+        </div>     
       </div>
+       }
     </main>
   )
 }

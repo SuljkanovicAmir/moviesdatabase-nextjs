@@ -9,9 +9,11 @@ export default async function Trending() {
 
     const data = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`) 
     const res = await data.json()
+
     return (
         <div className="movie-list-div"> 
             <h3>Trending</h3>
+            {res.results.length > 0 &&
             <div className="movie-list"> 
             {res.results.map((trending) => (
                 <Link key={trending.id}  href={`${trending.title ? `/movie/${trending.id}` :  `/tvshow/${trending.id}`}`}>  
@@ -19,6 +21,7 @@ export default async function Trending() {
                 </Link>
             ))}
             </div>
+           }
         </div>
     );
 }
