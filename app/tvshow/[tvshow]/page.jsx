@@ -7,9 +7,10 @@ export default async function TvDetails ( {params}) {
    
     const data = await fetch(`https://api.themoviedb.org/3/tv/${tvshow}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 180}}) 
     const res = await data.json()
+
+
    
     const network = res.networks[0].name
-    console.log(res)
     return (
         <div>
             <div>

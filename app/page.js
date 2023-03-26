@@ -9,8 +9,6 @@ export default async function Home() {
 
   const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`) 
   const res = await data.json()
-
-  console.log(res.results.length)
   return (
     <main>
       <Header />
@@ -23,7 +21,6 @@ export default async function Home() {
         <div className="movie-list"> 
           {res.results.map((movie) => 
           <Movie  
-            key={movie.id}
             id={movie.id}
             title={movie.title}
             poster_path={movie.poster_path}
@@ -38,4 +35,5 @@ export default async function Home() {
     </main>
   )
 }
+
 

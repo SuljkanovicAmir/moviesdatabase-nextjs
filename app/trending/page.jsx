@@ -2,13 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 
 
+async function fetchTrending() {
+    const data = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`) 
+    return data.json()
+}
+
+
 
 export default async function Trending() {
 
+    const res = await fetchTrending();
+
     const imagePath = 'https://image.tmdb.org/t/p/original'
 
-    const data = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`) 
-    const res = await data.json()
+ 
 
     return (
         <div className="movie-list-div"> 
