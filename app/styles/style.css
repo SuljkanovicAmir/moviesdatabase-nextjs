@@ -391,7 +391,7 @@ header > nav > ul {
 }
 
 .details .backdrop {
-  height: 83vh;
+  height: 91vh;
   background: linear-gradient(180deg, rgb(38 38 38 / 5%) 60%, rgb(18 18 18 / 37%) 79%, rgb(0 0 0) 91%);
 }
 
@@ -400,8 +400,9 @@ header > nav > ul {
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
+  height: 90vh;
 }
+
 .details-info {
   padding-left: 5%;
   margin-bottom: 100px;
@@ -414,7 +415,7 @@ header > nav > ul {
   z-index: 2;
 }
 
-.info h3 {
+.info h2 {
   font-size: 4em;
 }
 
@@ -464,22 +465,23 @@ header > nav > ul {
   header > nav > ul {
     gap: 10px;
     padding: 5px 5px;
-}
-.detailed-poster {
-  width: 200%;
-  height: auto;
-  transform: translateX(-25%);
+  }
+  .detailed-poster {
+    width: 200%;
+    height: 63vh;
+    transform: translateX(-25%);
   }
   .details .backdrop {
-    height: 63vh;
+    height: 64vh;
     z-index: 1;
   }
   .overview,
   .season-info {
     padding: 15px 15px 15px 0px;
   }
-  .info h3 {
-    font-size: unset;
+
+  .info h2 {
+    font-size: 1.8em;
   }
   
 }
