@@ -5,11 +5,10 @@ export default async function TvDetails ( {params}) {
     const { tvshow } = params
     const imagePath = 'https://image.tmdb.org/t/p/original'
    
-    const data = await fetch(`https://api.themoviedb.org/3/tv/${tvshow}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 180}}) 
-    const res = await data.json()
-
-
    
+
+    const res = await fetchTvDetails(tvshow);
+
     const network = res.networks[0].name
     return (
         <div>
@@ -30,4 +29,11 @@ export default async function TvDetails ( {params}) {
             </div>
         </div>
     );
+}
+
+
+
+async function fetchTvDetails(tvshow) {
+    const data = await fetch(`https://api.themoviedb.org/3/tv/${tvshow}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 180}}) 
+    return data.json()
 }
