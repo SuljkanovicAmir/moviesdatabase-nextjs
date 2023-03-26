@@ -390,9 +390,49 @@ header > nav > ul {
   }
 }
 
+.details .backdrop {
+  height: 83vh;
+  background: linear-gradient(180deg, rgb(38 38 38 / 5%) 60%, rgb(18 18 18 / 37%) 79%, rgb(0 0 0) 91%);
+}
 
 
+.detailed-poster {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+.details-info {
+  padding-left: 5%;
+  margin-bottom: 100px;
+}
 
+.info {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  z-index: 2;
+}
+
+.info h3 {
+  font-size: 4em;
+}
+
+.info > div,
+.season-info {
+  display: flex;
+  gap: 10px;
+}
+
+.overview,
+.season-info {
+  padding: 20px 20px 20px 0px;
+}
+
+.vote-average > span {
+  font-size: 0.9em;
+  color: rgb(187, 187, 187);
+}
 
 
 
@@ -404,13 +444,45 @@ header > nav > ul {
   .slide-description {
     font-size: 1.4em;
   }
+  .movie-list-div h3 {
+    font-size: 1em;
+  }
   .release-date {
     bottom: 12%;
     background-color: transparent;
   }
-  .poster {
-    height: 280px;
+  .movie-list-div {
+    height: 335px;
   }
+  .poster {
+    height: 250px;
+  }
+  .sign-in-btn {
+    padding: 4px 8px;
+  }
+
+  header > nav > ul {
+    gap: 10px;
+    padding: 5px 5px;
 }
+.detailed-poster {
+  width: 200%;
+  height: auto;
+  transform: translateX(-25%);
+  }
+  .details .backdrop {
+    height: 63vh;
+    z-index: 1;
+  }
+  .overview,
+  .season-info {
+    padding: 15px 15px 15px 0px;
+  }
+  .info h3 {
+    font-size: unset;
+  }
+  
+}
+
 
 

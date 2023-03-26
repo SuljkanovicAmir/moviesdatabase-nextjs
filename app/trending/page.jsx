@@ -15,7 +15,6 @@ export default async function Trending() {
 
     const imagePath = 'https://image.tmdb.org/t/p/original'
 
- 
 
     return (
         <div className="movie-list-div"> 
