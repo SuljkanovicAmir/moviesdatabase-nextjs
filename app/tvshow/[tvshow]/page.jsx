@@ -8,7 +8,7 @@ export default async function TvDetails ( {params}) {
     const res = await fetchTvDetails(tvshow);
  
     return (
-        <div>
+        <div className="details-container">
             <div className="details">
                 <div>
                     <div className="backdrop"></div>
@@ -34,8 +34,8 @@ export default async function TvDetails ( {params}) {
                         </div>
                         <div>
                             <span>Created by: </span>
-                            <span>{res.created_by[0].name} </span>
-                            <span>and {res.created_by[1]?.name} </span>
+                            <span>{res.created_by[0]?.name} </span>
+                            <span> {res.created_by[1]?.name} </span>
                         </div>
                     </div>
             </div>

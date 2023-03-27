@@ -13,7 +13,7 @@ export default async function MovieDetail ( {params}) {
     console.log(res)
 
     return (
-        <div>
+        <div className="details-container">
             <div className="details">
                 <div>
                     <div className="backdrop"></div>

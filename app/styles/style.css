@@ -111,6 +111,7 @@ a {
 
 main {
   overflow: hidden;
+  margin-bottom: 100px;
 }
 
 
@@ -238,17 +239,17 @@ header > nav > ul {
 
 .slide-description {
   position: absolute;
-  top: 30%;
+  top: 50%;
   left: 5%;
-  font-size: 2em;
+  font-size: 2.2em;
 }
 
 
 .see-more-btn {
-  font-size: 0.7em;
+  font-size: 0.5em;
   border: none;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 7px 14px;
   margin-top: 10px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -390,11 +391,22 @@ header > nav > ul {
   }
 }
 
+
+
 .details .backdrop {
-  height: 91vh;
+  height: 90vh;
   background: linear-gradient(180deg, rgb(38 38 38 / 5%) 60%, rgb(18 18 18 / 37%) 79%, rgb(0 0 0) 91%);
+  background: linear-gradient(270deg,rgb(38 38 38/5%) 60%,hsla(0,0%,7%,.37) 79%,#000 91%), linear-gradient(90deg,rgb(38 38 38/5%) 60%,hsla(0,0%,7%,.37) 79%,#000 92%), linear-gradient(181deg,rgb(38 38 38/5%) 60%,hsla(0,0%,7%,.37) 79%,#000 91%);
 }
 
+.details-container {
+  display: flex;
+  justify-content: center;
+}
+
+.details {
+  width: 80%;
+}
 
 .detailed-poster {
   top: 0;
@@ -406,12 +418,13 @@ header > nav > ul {
 .details-info {
   padding-left: 5%;
   margin-bottom: 100px;
+  width: 60%;
 }
 
 .info {
   position: absolute;
-  top: 50%;
-  left: 5%;
+  top: 60%;
+  left: 15%;
   z-index: 2;
 }
 
@@ -468,16 +481,37 @@ header > nav > ul {
   }
   .detailed-poster {
     width: 200%;
-    height: 63vh;
+    height: 50vh;
     transform: translateX(-25%);
   }
-  .details .backdrop {
-    height: 64vh;
-    z-index: 1;
+  .details {
+    width: 100%;
   }
+  .details-info {
+    width: 100%;
+  }
+  .details .backdrop {
+    height: 51vh;
+    z-index: 1;
+    background: linear-gradient(180deg, rgb(38 38 38 / 5%) 60%, rgb(18 18 18 / 37%) 79%, rgb(0 0 0) 91%);
+  }
+
   .overview,
   .season-info {
     padding: 15px 15px 15px 0px;
+  }
+
+  .info {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    z-index: 2;
+    width: 90%;
+    line-height: 30px;
+}
+  .info > div {
+    font-size: 0.9em;
+    gap: 5px;
   }
 
   .info h2 {
