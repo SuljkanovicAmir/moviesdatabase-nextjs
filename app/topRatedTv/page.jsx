@@ -22,7 +22,7 @@ export default async function TopRatedTV() {
             {res.results.length > 0 &&
             <div className="movie-list"> 
             {res.results.map((top) => (
-                <Link key={top.id}  href={`/tvshow/${top.id}`}>  
+                <Link key={top.id}  href={`/tv/${top.id}`}>  
                     <Image className="poster" src={imagePath + top.poster_path} priority alt={top.name} width={500} height={500}/>
                 </Link>
             ))}

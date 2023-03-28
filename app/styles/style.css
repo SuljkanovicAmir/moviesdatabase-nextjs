@@ -136,7 +136,13 @@ header > nav > ul {
   padding: 5px 15px;
 }
 
-.nav-home {
+.logo-img {
+  width: 32px;
+  height: 32px;
+  filter: invert(1);
+}
+
+.nav-movies {
   margin-left: auto;
 }
 
@@ -321,6 +327,7 @@ header > nav > ul {
   right: 0;
   bottom: 0;
   background: linear-gradient(180deg, rgb(38 38 38 / 5%) 60%, rgb(18 18 18 / 37%) 79%, rgb(0 0 0 / 96%) 91%);
+  pointer-events: none;
 }
 
 
@@ -403,6 +410,8 @@ header > nav > ul {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 .details {
@@ -478,7 +487,7 @@ header > nav > ul {
 
   header > nav > ul {
     gap: 10px;
-    padding: 5px 5px;
+    padding: 5px 10px;
   }
   .detailed-poster {
     width: 200%;

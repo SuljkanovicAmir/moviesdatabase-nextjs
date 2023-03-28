@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Header from './header/page';
 import Loading from './loading/page';
 import PopularMovies from './movies/popularMovies/page'
 import TopRated from './movies//topRated/page';
@@ -14,7 +13,6 @@ export default async function Home() {
 
   return (
     <main>
-      <Header />
       <UpcomingMovies/>
       <Trending />
       <Loading />

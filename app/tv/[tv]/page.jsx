@@ -1,11 +1,18 @@
+import Loading from "@/app/loading/page";
 import Image from "next/image"
+import dynamic from 'next/dynamic'
 
+
+const SimilarTV = dynamic(() => import("./similarTV/page"), {
+    loading: () => Loading,
+  })
+  
 
 export default async function TvDetails ( {params}) {
-    const { tvshow } = params
+    const { tv } = params
     const imagePath = 'https://image.tmdb.org/t/p/original'
 
-    const res = await fetchTvDetails(tvshow);
+    const res = await fetchTvDetails(tv);
  
     return (
         <div className="details-container">
@@ -39,13 +46,14 @@ export default async function TvDetails ( {params}) {
                         </div>
                     </div>
             </div>
+            <SimilarTV params={params}/>
         </div>
     );
 }
 
 
 
-async function fetchTvDetails(tvshow) {
-    const data = await fetch(`https://api.themoviedb.org/3/tv/${tvshow}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 180}}) 
+async function fetchTvDetails(tv) {
+    const data = await fetch(`https://api.themoviedb.org/3/tv/${tv}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 180}}) 
     return data.json()
 }

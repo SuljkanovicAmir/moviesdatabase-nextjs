@@ -22,7 +22,7 @@ export default async function Trending() {
             {res.results.length > 0 &&
             <div className="movie-list"> 
             {res.results.map((trending) => (
-                <Link key={trending.id}  href={`${trending.title ? `/movie/${trending.id}` :  `/tvshow/${trending.id}`}`}>  
+                <Link key={trending.id}  href={`${trending.title ? `/movie/${trending.id}` :  `/tv/${trending.id}`}`}>  
                     <Image className="poster"src={imagePath + trending.poster_path} priority alt={trending.title ? trending.title : trending.name} width={500} height={500}/>
                 </Link>
             ))}
