@@ -1,4 +1,4 @@
-import SimilarMovies from "@/app/movies/similarMovies/page"
+import SimilarMovies from "../../movies/similarMovies/page"
 import Image from "next/image"
 
 
