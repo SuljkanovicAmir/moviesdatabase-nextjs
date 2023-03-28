@@ -24,9 +24,9 @@ export default async function SimilarMovies( {params} ) {
             <h3>More Like This</h3>
             {res.results.length > 0 &&
             <div className="movie-list"> 
-            {res.results.map((trending) => (
-                <Link key={trending.id}  href={`/movie/${trending.id}`}>  
-                    <Image className="poster"src={imagePath + trending.poster_path} priority alt={trending.title} width={500} height={500}/>
+            {res.results.map((similar) => (
+                <Link key={similar.id}  href={`/movie/${similar.id}`}>  
+                    <Image className="poster"src={imagePath + similar.poster_path} priority alt={similar.title} width={500} height={500}/>
                 </Link>
             ))}
             </div>
