@@ -2,6 +2,11 @@ import SimilarMovies from "@/app/movies/similarMovies/page"
 import Image from "next/image"
 
 
+async function fetchSimilar(movie) {
+    const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`) 
+    return data.json()
+}
+
 
 
 export default async function MovieDetail ( {params}) {
@@ -10,6 +15,9 @@ export default async function MovieDetail ( {params}) {
    
     const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 180}}) 
     const res = await data.json()
+
+    const resSimilar = await fetchSimilar(movie);
+    console.log(resSimilar)
 
     return (
         <div className="details-container">
@@ -34,7 +42,7 @@ export default async function MovieDetail ( {params}) {
                     <p className="overview">{res.overview}</p>
                 </div>
             </div>
-            <SimilarMovies params={params} />
+            <SimilarMovies resSimilar={resSimilar} />
         </div>
     );
 }
