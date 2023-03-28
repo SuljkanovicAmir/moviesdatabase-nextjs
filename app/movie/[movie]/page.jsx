@@ -1,7 +1,7 @@
 import Image from "next/image"
 import dynamic from 'next/dynamic'
 
-const SimilarMovies = dynamic(() => import("../../movies/similarMovies/page"), {
+const SimilarMovies = dynamic(() => import("./similarMovies/page"), {
   loading: () => <p>Loading...</p>,
 })
 
