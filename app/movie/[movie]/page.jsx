@@ -1,3 +1,4 @@
+import SimilarMovies from "@/app/movies/similarMovies/page"
 import Image from "next/image"
 
 
@@ -9,8 +10,6 @@ export default async function MovieDetail ( {params}) {
    
     const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 180}}) 
     const res = await data.json()
-
-    console.log(res)
 
     return (
         <div className="details-container">
@@ -33,10 +32,9 @@ export default async function MovieDetail ( {params}) {
                         </div>
                     </div>
                     <p className="overview">{res.overview}</p>
-
                 </div>
-               
             </div>
+            <SimilarMovies params={params} />
         </div>
     );
 }

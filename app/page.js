@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Header from './header/page';
 import Loading from './loading/page';
-import Movie from './movie'
-import TopRated from './topRated/page';
+import PopularMovies from './movies/popularMovies/page'
+import TopRated from './movies//topRated/page';
 import TopRatedTV from './topRatedTv/page';
 import Trending from './trending/page';
-import UpcomingMovies from './upcomingMovies/page';
+import UpcomingMovies from './movies/upcomingMovies/page';
 
 export default async function Home() {
 
@@ -23,7 +23,7 @@ export default async function Home() {
       <h3>Popular movies</h3>
         <div className="movie-list"> 
           {res.results.map((movie) => 
-          <Movie  
+          <PopularMovies  
             id={movie.id}
             title={movie.title}
             poster_path={movie.poster_path}
