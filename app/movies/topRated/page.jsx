@@ -3,7 +3,7 @@ import Link from "next/link";
 
 
 async function fetchTrending() {
-    const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`) 
+    const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`,  {next: { revalidate: 3600 },}) 
     return data.json()
 }
 

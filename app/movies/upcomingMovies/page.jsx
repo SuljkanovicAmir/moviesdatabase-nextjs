@@ -13,7 +13,7 @@ export default function UpcomingMovies() {
 
     useEffect(() => {
         const fetchImages = async () => {
-            const upcData =  await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&region=US&language=en-US&release_date.gte=${today}`) 
+            const upcData =  await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&region=US&language=en-US&release_date.gte=${today}`,  {next: { revalidate: 3600 },}) 
             const upcRes =  await upcData.json()
             setImages(upcRes.results)
             console.log(upcRes)

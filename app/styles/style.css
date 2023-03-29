@@ -182,9 +182,9 @@ header > nav > ul {
 
 .movie-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 300px);
+  grid-template-columns: repeat(auto-fit, 215px);
   min-width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .movie-div {
@@ -203,7 +203,28 @@ header > nav > ul {
   font-size: 0.8em;
 }
 
+.all-movies-tv {
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-left: 5%;
+}
 
+.all-movies-tv h1 {
+  margin-bottom: 20px;
+}
+
+.all-movies-tv .movie-list-div {
+  height: 100%;
+  margin-bottom: 20px;
+  padding: unset;
+
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
 
 .img-description {
   position: absolute;
@@ -321,7 +342,6 @@ header > nav > ul {
   padding: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .movie-list {
@@ -329,6 +349,10 @@ header > nav > ul {
   display: flex;
   gap: 15px;
   padding: 10px 0px;
+}
+
+.movie-list a {
+  min-width: 200px;
 }
 
 .movie-list .poster:hover {
@@ -481,7 +505,7 @@ header > nav > ul {
 
 
 .search-div {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -507,6 +531,40 @@ header > nav > ul {
   color: black;
   background-color: rgb(255, 255, 255);
 }
+
+
+input[type=number] {
+  background: white;
+    padding: 4px 8px;
+    max-width: 100px;
+    border-radius: 8px;
+    color: black;
+}
+
+select {
+  background: white;
+  padding: 4px 8px;
+  max-width: 150px;
+  border-radius: 8px;
+  color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media screen and (max-width: 764px) {
@@ -601,7 +659,54 @@ header > nav > ul {
   .input-div {
     font-size: 1.1em;
   }
+  .movie-list a {
+    min-width: 167px;
+  }
+  .all-movies-tv {
+    min-height: 100vh;
+    padding: 100px 10px 30px 10px;
+  }
+  .all-movies-tv .movie-grid {
+    grid-template-columns: repeat(auto-fit, 160px);
+    justify-content: center;
+    row-gap: 5px;
+  }
+  .all-movies-tv .poster {
+    height: 230px;
+  }
+  .all-movies-tv h1 {
+    margin-left: 5%;
+  }
+
+  label {
+    display: none;
+  }
+  .filters {
+    flex-direction: column;
+    align-items: center;
+  }
+  .filters > div {
+    width: 60%;
+  }
+  input[type=number],
+  select {
+    max-width: unset;
+    width: 100%;
+    min-width: 200px
+  }
+
+  @media screen and (max-width: 340px) {
+    .all-movies-tv .movie-grid {
+      grid-template-columns: repeat(auto-fit, 150px);
+      justify-content: center;
+      row-gap: 5px;
+    }
+    .all-movies-tv .poster {
+      height: 200px;
+    }
+  }
 }
+
 
 
 

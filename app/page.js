@@ -8,7 +8,7 @@ import UpcomingMovies from './movies/upcomingMovies/page';
 
 export default async function Home() {
 
-  const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`) 
+  const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, { cache: 'no-store' }) 
   const res = await data.json()
 
   return (

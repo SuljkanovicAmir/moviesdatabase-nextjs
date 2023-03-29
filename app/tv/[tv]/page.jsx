@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 
 
 const SimilarTV = dynamic(() => import("./similarTV/page"), {
-    loading: () => Loading,
+    loading: () => <Loading />,
   })
   
 
@@ -54,6 +54,6 @@ export default async function TvDetails ( {params}) {
 
 
 async function fetchTvDetails(tv) {
-    const data = await fetch(`https://api.themoviedb.org/3/tv/${tv}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 180}}) 
+    const data = await fetch(`https://api.themoviedb.org/3/tv/${tv}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 3600}}) 
     return data.json()
 }

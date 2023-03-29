@@ -14,12 +14,12 @@ export default function Header() {
                       </Link>
                     </li>
                     <li className='nav-movies'>
-                      <Link href="/search">
+                      <Link href="/allmovies">
                        Movies
                       </Link>
                     </li>
                     <li>
-                      <Link href="/tv">
+                      <Link href="/alltv">
                        TV Shows
                       </Link>
                     </li>
