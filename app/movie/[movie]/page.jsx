@@ -17,7 +17,7 @@ export default async function MovieDetail ( {params}) {
     return (
         <div className="details-container">
             <div className="details">
-                <div>
+                <div className="backdrop-div">
                     <div className="backdrop"></div>
                     <Image className="detailed-poster" priority src={imagePath + res.backdrop_path} alt={res.title} width={1000} height={1000}/>
                 </div>

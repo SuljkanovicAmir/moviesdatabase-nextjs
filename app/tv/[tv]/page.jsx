@@ -17,7 +17,7 @@ export default async function TvDetails ( {params}) {
     return (
         <div className="details-container">
             <div className="details">
-                <div>
+                <div className="backdrop-div">
                     <div className="backdrop"></div>
                     <Image className="detailed-poster" quality={100} priority src={imagePath + res.backdrop_path} alt={res.name} width={1000} height={1000}/>
                 </div>

@@ -8,10 +8,7 @@ async function fetchSimilar(movie) {
     const res = await data.json()
     const resResults = res.results;
     return resResults;
-
 }
-
-
 
 
 export default async function SimilarMovies( { params }) {

@@ -16,7 +16,7 @@ export default function Movie ({ title, id, release_date, poster_path, votes}) {
                         <p>{votes}</p>
                     </div>          
                 </div>
-                <Image className="poster"src={imagePath + poster_path} priority alt={title} width={500} height={500}/>
+                <Image className="poster" src={imagePath + poster_path} priority alt={title} width={500} height={500}/>
             </Link>
         </div>
     );
