@@ -4,12 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-async function gettv(sort, filter) {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?sort_by=${sort}&with_genres=${filter}&api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
-    const data = await response.json();
-    return data.results;
-  }
-
 
 
 export default function Alltv() {
