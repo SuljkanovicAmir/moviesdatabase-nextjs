@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 
 
-export default function Alltv() {
+export default function AllTv() {
 
     const [tv, setTv] = useState([]);
     const [sort, setSort] = useState('popularity.desc');
@@ -14,7 +14,6 @@ export default function Alltv() {
     const [startYear, setStartYear] = useState('');
     const [endYear, setEndYear] = useState('');
   
-
     const imagePath = 'https://image.tmdb.org/t/p/original'
 
     useEffect(() => {
