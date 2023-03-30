@@ -10,10 +10,8 @@ async function fetchTrending() {
 
 
 
-
 export default async function TopRatedTV() {
     const res = await fetchTrending();
-
     const imagePath = 'https://image.tmdb.org/t/p/original'
 
     return (

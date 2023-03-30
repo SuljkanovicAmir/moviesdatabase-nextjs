@@ -1,6 +1,7 @@
 import Loading from "@/app/loading/page";
 import Image from "next/image"
 import dynamic from 'next/dynamic'
+import MediaCast from "@/app/movie/[movie]/mediaCast/page";
 
 
 const SimilarTV = dynamic(() => import("./similarTV/page"), {
@@ -46,6 +47,7 @@ export default async function TvDetails ( {params}) {
                         </div>
                     </div>
             </div>
+            <MediaCast mediaId={tv} mediaType='tv'/>
             <SimilarTV params={params}/>
         </div>
     );

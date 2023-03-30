@@ -549,10 +549,37 @@ select {
   color: black;
 }
 
+.cast-list-div {
+  height: 280px;
+}
+
+.cast-list {
+  overflow-x: auto;
+  display: flex;
+  gap: 20px;
+  padding: 10px 0px;
+}
 
 
-
-
+.cast-list a {
+  height: 200px;
+  min-width: 159px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cast-list p {
+  margin-top: 8px;
+}
+.cast-img {
+  height: 159px;
+  width: 159px;
+  background-size: cover;
+  border-radius: 100px;
+  background-position: center;
+}
 
 
 
@@ -694,6 +721,26 @@ select {
     width: 100%;
     min-width: 200px
   }
+
+  .cast-list-div {
+    height: 250px;
+  }
+  
+  .cast-list a {
+    height: 180px;
+    min-width: 140px;
+  }
+  .cast-list p {
+    font-size: 15px;
+  }
+  .cast-img {
+    height: 120px;
+    width: 120px;
+  }
+  
+  
+  
+  
 
   @media screen and (max-width: 340px) {
     .all-movies-tv .movie-grid {
