@@ -114,7 +114,7 @@ div {
     -webkit-tap-highlight-color: transparent;
 }
 
-
+/* vratit scrollbar */
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
