@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 
 async function fetchTrending() {
-    const data = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,  {next: { revalidate: 3600 },}) 
+    const data = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,  {next: { revalidate: 3600 }}, {cache: 'force-cache'}) 
     const res = await data.json()
     const resResults = res.results;
     return resResults;
@@ -21,7 +21,7 @@ export default function Search() {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const [data, setData] = useState([]);
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w200'
 
     useEffect(() => {
         async function fetchData() {

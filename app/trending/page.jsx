@@ -15,7 +15,7 @@ export default async function Trending() {
 
     const res = await fetchTrending();
 
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w200'
 
 
     return (

@@ -20,7 +20,7 @@ export default async function SimilarTV( { params }) {
     const res = await fetchSimilar(tv);
 
    
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w200'
     return (
         <div className="movie-list-div"> 
             <h3>More Like This</h3>

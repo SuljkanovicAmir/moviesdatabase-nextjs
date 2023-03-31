@@ -14,7 +14,7 @@ export default async function MediaCast( { mediaId, mediaType }) {
    
 
     const res = await fetchCast(mediaId, mediaType);
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w200'
 
     return (
         <div className="outsider movie-list-div cast-list-div"> 

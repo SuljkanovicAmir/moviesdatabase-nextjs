@@ -1,10 +1,29 @@
 import Image from 'next/image'
 import Loading from './loading/page';
-import PopularMovies from './movies/popularMovies/page'
-import TopRated from './movies//topRated/page';
-import TopRatedTV from './topRatedTv/page';
-import Trending from './trending/page';
 import UpcomingMovies from './movies/upcomingMovies/page';
+import dynamic from 'next/dynamic';
+
+
+const Trending = dynamic(() => import('./trending/page'), {
+  loading: () => <Loading />,
+  ssr: false 
+})
+
+const TopRatedTV = dynamic(() => import('./topRatedTv/page'), {
+  loading: () => <Loading />,
+  ssr: false 
+})
+
+const TopRated = dynamic(() => import('./movies/topRated/page'), {
+  loading: () => <Loading />,
+  ssr: false 
+})
+
+const PopularMovies = dynamic(() => import('./movies/popularMovies/page'), {
+  loading: () => <Loading />,
+  ssr: false 
+})
+
 
 export default async function Home() {
 

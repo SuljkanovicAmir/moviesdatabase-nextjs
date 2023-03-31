@@ -14,7 +14,7 @@ async function fetchTrending() {
 export default async function TopRated() {
     const res = await fetchTrending();
 
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w200'
 
 
     return (

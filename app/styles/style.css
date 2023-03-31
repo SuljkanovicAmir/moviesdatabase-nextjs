@@ -163,9 +163,7 @@ header > nav > ul {
   margin-left: auto;
 }
 
-::-webkit-scrollbar{
-  display: none;
-}
+
 
 .sign-in-btn,
 .see-more-btn {
@@ -439,6 +437,27 @@ header > nav > ul {
   }
 }
 
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #e0e0e029;
+}
+
+::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+  background-color: #48484829;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #e0e0e0;
+}
 
 
 .details .backdrop {
@@ -550,7 +569,7 @@ select {
 }
 
 .cast-list-div {
-  height: 280px;
+  height: 300px;
 }
 
 .cast-list {
@@ -723,7 +742,7 @@ select {
   }
 
   .cast-list-div {
-    height: 250px;
+    height: 300px;
   }
   
   .cast-list a {
