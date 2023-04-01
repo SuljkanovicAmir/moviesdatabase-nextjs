@@ -14,7 +14,7 @@ export default function AllTv() {
     const [startYear, setStartYear] = useState('');
     const [endYear, setEndYear] = useState('');
   
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w300'
 
     useEffect(() => {
         async function fetchtv() {

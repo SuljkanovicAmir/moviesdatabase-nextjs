@@ -20,7 +20,7 @@ export default function UpcomingMovies() {
         fetchImages()
       }, [])
     
-      let interval = 6000
+      let interval = 62000
 
       useEffect(() => {
         const timer = setInterval(() => {
