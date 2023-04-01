@@ -17,7 +17,7 @@ export default async function SimilarMovies( { params }) {
     const res = await fetchSimilar(movie);
 
    
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w200'
     return (
         <div className="movie-list-div"> 
             <h3>More Like This</h3>

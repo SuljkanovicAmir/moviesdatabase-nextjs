@@ -1,5 +1,3 @@
-"use client"
-
 import './styles/style.css'
 import { Poppins } from 'next/font/google'
 import { UserProvider } from './context/UserContext';
@@ -26,7 +24,6 @@ export default function RootLayout({ children }) {
         <Header/>
         {children}
       </UserProvider></body>
-       
     </html>
   )
 }
