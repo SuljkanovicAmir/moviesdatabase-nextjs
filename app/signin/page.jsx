@@ -24,13 +24,20 @@ export default function SignIn() {
 
     return (
         <div className="sign-in-page">
-            <input type="text" placeholder='Email'  onChange={(e) => setLoginEmail(e.target.value)}  />
-            <input type="password" placeholder='Password'  onChange={(e) => setLoginPassword(e.target.value)}  />
-            <button className='next-btn' onClick={(e) => handleLogin(e)} >Sign In</button>
-            <div className='no-acc-div'>
-                Don't have an account? 
-            <span role='button' onClick={() => router.push('/signup')}> Sign up</span>
+            <h1 className='sign-title'>Sign In</h1>
+            <div className='sign-in-div'>
+                <input type="text" placeholder='Email'  onChange={(e) => setLoginEmail(e.target.value)}  />
+                <input type="password" placeholder='Password'  onChange={(e) => setLoginPassword(e.target.value)}  />
+                <div className='sign-in-btn-div'>
+                    <button className='next-btn' onClick={(e) => handleLogin(e)} >Sign In</button>
+                    <span>Forgot Password?</span>
+                </div>
+                <div className='no-acc-div'>
+                    Don't have an account? 
+                    <span role='button' onClick={() => router.push('/signup')}> Sign up</span>
+                </div>
             </div>
+            
         </div>
     );
 }

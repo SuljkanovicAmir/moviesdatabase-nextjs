@@ -4,18 +4,17 @@ import { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '../../../public/logo.png'
-import ProfileImg from '../../../public/profile.jpg'
 import SearchIcon from '../../../public/search.svg'
 import { UserContext } from '../../context/UserContext';
 import { useRouter } from 'next/navigation';
 
 
 
-export default function Header({userData}) {
+export default function Header() {
   
   const router = useRouter();
   const [isActive, setIsActive] = useState(false)
-  const { signout, userName } = useContext(UserContext);
+  const { signout, userName, userImage } = useContext(UserContext);
 
   const handleDropdown = () => {
     setIsActive(prev => !prev)
@@ -26,11 +25,13 @@ export default function Header({userData}) {
     try {
       signout()
       window.location.reload()
+      router.push('/')
     } catch (err) {
       console.log(err);
     }
 };
 
+console.log(userImage)
 
 
       return (
@@ -61,7 +62,7 @@ export default function Header({userData}) {
                       <>
                       <li className='profile-icon-div'>
                         <div onClick={handleDropdown} className='profile-nav-image'>
-                            <Image src={ProfileImg} alt='profilepic'  width={100} height={100}/>
+                            <Image src={userImage} alt='profilepic'  width={100} height={100}/>
                         </div>
                         <div className={isActive ? 'profile-dropdown': 'profile-dropdown hidden'}>
                           <ul>
@@ -80,7 +81,7 @@ export default function Header({userData}) {
                       : 
                       <li className='sign-in-btn'>
                         <Link href="/signin">
-                          Sign in
+                          Sign In
                         </Link>
                        </li>
                       }
