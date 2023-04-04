@@ -31,8 +31,8 @@ export const UserProvider = ({ children }) => {
   const [pending, setPending] = useState(true);
   const [userData, setUserData] = useState({});
 
-
   const usersRef = collection(db, 'users');
+
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -52,13 +52,12 @@ export const UserProvider = ({ children }) => {
             follows: data.follows || [],
             watched: data.watched || [],
             goingToWatch: data.goingToWatch || [],
+            at: data.at
           })); 
-
         }, (err) => console.log(err)
         );
 
-        
-        const storageAvatarRef = ref(storage,"avatars/" + currentUser.uid + ".png");
+        const storageAvatarRef = ref(storage, "avatars/" + currentUser.uid + ".png");
 
         getDownloadURL(storageAvatarRef)
           .then((url) => {
@@ -69,18 +68,16 @@ export const UserProvider = ({ children }) => {
             setUserData((u) => ({ ...u, image: ProfileImg }));
           });
 
-
-
-      } else {
-        setTimeout(() => {
-          setPending(false);
-        }, 200);
-      }
+        } else {
+          setTimeout(() => {
+            setPending(false);
+          }, 200);
+          setUserData({ image: ProfileImg });
+        }
     });
 
   },[])
 
-  console.log(userData)
 
     if(pending) {
       <div>
@@ -90,7 +87,7 @@ export const UserProvider = ({ children }) => {
 
  const signIn = (email, password) =>  {
     return signInWithEmailAndPassword(auth, email, password)
-}
+  }
   
   const signout = async () => {
     return await signOut(auth)
@@ -100,13 +97,14 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider value={{ 
                                 signIn, 
                                 signout, 
-                                userID, 
+                                userID: userID, 
                                 currentUser, 
                                 userName: userData.name,
                                 userImage: userData.image,
                                 userFollows: userData.follows,
                                 userBio: userData.bio,
                                 userFollowers: userData.followers, 
+                                userAt: userData.at, 
                                 db,
                                 storage
                                 }}>

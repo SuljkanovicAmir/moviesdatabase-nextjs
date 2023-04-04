@@ -3,7 +3,7 @@ import Link from "next/link";
 
 
 async function fetchCast(mediaId, mediaType) {
-    const data = await fetch(`https://api.themoviedb.org/3/${mediaType}/${mediaId}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}`) 
+    const data = await fetch(`https://api.themoviedb.org/3/${mediaType}/${mediaId}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,  {next: { revalidate: 3600 },}) 
     const res = await data.json()
     const resResults = res.cast;
     return resResults;

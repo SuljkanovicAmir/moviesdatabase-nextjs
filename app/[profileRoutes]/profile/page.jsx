@@ -6,22 +6,23 @@ import { UserContext } from '../../context/UserContext';
 import Image from 'next/image';
 import { doc, onSnapshot, collection } from "firebase/firestore";
 import { ref, getDownloadURL } from 'firebase/storage';
+import Link from 'next/link';
+import Editor from '../../components/reusables/Edtior'
 
+export default function Profile ({userProfile, profileID,  previewAvatar, setPreviewAvatar}) {
 
-export default function Profile ({userProfile, profileID}) {
-
-    const { userName, userImage, userBio, userID, db, storage, userFollowers, userFollows } = useContext(UserContext);
-    const [profileData, setProfileData] = useState({ follows: [],
-        followers: [],
-      });
+    const { userName, userImage, userBio, userAt, userID, db, storage, userFollowers, userFollows } = useContext(UserContext);
+    
   
     const [isActiveEdit, setEditActive] = useState(false);
-    const [previewAvatar, setPreviewAvatar] = useState(userImage);
     const [imageLoaded, setImageLoaded] = useState(false);
     const [followed, setFollowed] = useState(false);
     const usersRef = collection(db, 'users');
 
-
+    const [profileData, setProfileData] = useState({ follows: [],
+        followers: [],
+      });
+    
     useEffect(() => {
       const storageAvatarRef = ref(storage, "avatars/" + profileID + '.png')
   
@@ -40,9 +41,6 @@ export default function Profile ({userProfile, profileID}) {
         
            
     }, [profileID, userImage, userProfile]);
-  
-    console.log(userProfile)
-
 
     useEffect(() => {
         setProfileData((n) => ({ ...n, follows: [], followers: [] }));
@@ -51,6 +49,7 @@ export default function Profile ({userProfile, profileID}) {
         ?
             setProfileData((n) => ({
               ...n,
+              at: userAt,
               name: userName,
               follows: userFollows || [],
               followers: userFollowers || [],
@@ -61,10 +60,10 @@ export default function Profile ({userProfile, profileID}) {
           :
               onSnapshot(doc(usersRef, profileID), (doc) => {
               let data = doc.data();
-                console.log(data)
               setProfileData((prevData) => ({
                 ...prevData,
                 name: data.name,
+                at: data.at,
                 follows: data.follows || [],
                 bio: data.bio,
                 followers: data.followers || [],
@@ -76,8 +75,10 @@ export default function Profile ({userProfile, profileID}) {
         userProfile,
         profileID,
         userImage,
+        userAt,
         userBio,
         userID,
+        userBio,
         userName,
         userFollowers,
         userFollows,
@@ -103,18 +104,35 @@ export default function Profile ({userProfile, profileID}) {
         <div className='profile-div'>
                        <div className="profile-header">
                            <div>
-                               <div className={`profile-header-image-div ${!imageLoaded ? "transparent" : ""}`} onLoad={imageLoad}>
-                                   <Image src={profileData.image} quality={100} priority alt='profilepic'  width={500} height={500}/>
+                               <div className={`profile-header-image-div ${!imageLoaded ? "" : "transparent"}`} onLoad={imageLoad}>
+                                 <div  className='avatar'   style={{backgroundImage: `url(${profileData.image})`}}></div>
                                </div>
                                <p>{profileData.name}</p>
+                                <p className='bio'>{profileData.bio}</p>
+                              {!userProfile && !userID && (
+                                (
+                                  <button>
+                                    <Link href='/signin'>
+                                    Follow
+                                    </Link>
+                                  </button>
+                                 )
+                              )    
+                              }
                                {userProfile ? (
-                               <button onClick={() => setEditActive(true)}>
+                                <>
+                                <button onClick={() => setEditActive(true)}>
                                   Edit Profile
                                 </button>
+                                 <Editor
+                                 isActiveEdit={isActiveEdit}
+                                 setEditActive={setEditActive}
+                                 />
+                               </>
                                ) : userID && (
                                 <button>Follow</button>
-                               )
-                            }
+                               ) 
+                               }
                            </div>
                        </div>
                        <div className='profile-main'>

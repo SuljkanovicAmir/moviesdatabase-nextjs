@@ -7,7 +7,6 @@ const nextConfig = {
     domains: ['image.tmdb.org'],
     unoptimized: true,
   },
-  ignoreWarnings: [/Prop `className` did not match/],
 }
 
 module.exports = nextConfig

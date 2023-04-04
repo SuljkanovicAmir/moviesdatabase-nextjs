@@ -4,7 +4,7 @@ import Link from "next/link";
 
 
 async function fetchSimilar(movie) {
-    const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`) 
+    const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`,  {next: { revalidate: 3600 }}) 
     const res = await data.json()
     const resResults = res.results;
     return resResults;

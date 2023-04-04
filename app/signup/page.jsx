@@ -11,21 +11,23 @@ import { uploadBytes, ref } from 'firebase/storage';
 import resizeFile from "../components/functions/resizeFile";
 import Image from "next/image";
 import { UserContext } from '../context/UserContext';
+import validateSignupForm from "../components/functions/validateSignupForm";
 
 export default function SignUp() {
 
     const { db, storage} = useContext(UserContext);
-
+    const [userAt, setUserAt] = useState("");
     const [registerEmail, setRegisterEmail] = useState('')
     const [registerPassword, setRegisterPassword] = useState('')
     const [name, setName] = useState('')
 	const [image, setImage] = useState(null);
     const [previewAvatar, setPreviewAvatar] = useState(image);
+    const [errors, setErrors] = useState({});
     const router = useRouter();
 
     useEffect(() => {
         if(image) {
-            	setPreviewAvatar(URL.createObjectURL(image));
+            setPreviewAvatar(URL.createObjectURL(image));
         }
 	
 
@@ -35,10 +37,15 @@ export default function SignUp() {
 
     const handleSignUp = (e) => {
         e.preventDefault()
+        const validationErrors = validateSignupForm(userAt, name, registerEmail, image, registerPassword);
+        setErrors(validationErrors);
+        if (Object.keys(validationErrors).length === 0) {
+          // submit the form
         createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
         .then((cred) => {
             setDoc(doc(db, 'users', cred.user.uid), {
                 name: name,
+                at: userAt,
                 watched: [],
                 goingToWatch: [],
                 follows: [cred.user.uid],
@@ -47,45 +54,50 @@ export default function SignUp() {
             })
             if(image) {
                 const storageAvatarRef = ref(storage, "avatars/" + cred.user.uid + '.png')
-                console.log(image)
                 uploadBytes(storageAvatarRef, image)
             }
             }).then(() => {
                 router.push('/')
             });
+        }
     };
 
     const handleFileChange = async (e) => {
 		if (e.target.files[0]) {
 			const file = e.target.files[0];
 			const blob = await resizeFile(file, 135, 135);
-            console.log(blob)
 			setImage(blob);
 		} else {
 			console.log("set image fail");
 		}
 	};
 
-    console.log(image)
 
     return (
         <div className="sign-in-page">
               <h1 className='sign-title'> Create your account </h1>
                 <div className='sign-in-div'>
+                    {errors.image && <div className="error">{errors.image}</div>}
                     <div className='pi-avatar' style={{backgroundImage: `url(${previewAvatar})`}}>
                         <label className='avatar-input-label' htmlFor="avatar-input">
                             <Image src={Camera} alt="changeAvatar" width={500} height={500}/>
                         </label>
                         <input
                             id="avatar-input"
+                            required
                             type="file"
                             accept="image/*"
                             onChange={handleFileChange}
                         />
                     </div>
-                    <input type="text" autocomplete="off" required placeholder='Username' onChange={(e) => setName(e.target.value)} />
-                    <input type="text" autocomplete="off" placeholder='Email' onChange={(e) => setRegisterEmail(e.target.value)}/>
-                    <input type="password" autoComplete="new-password" placeholder='Password' onChange={(e) => setRegisterPassword(e.target.value)}/>
+                    <input type="text" value={userAt} autoComplete="off" required placeholder='At' onChange={(e) => setUserAt(e.target.value)} />
+                    {errors.userAt && <div className="error">{errors.userAt}</div>}
+                    <input type="text" value={name} autoComplete="off" required placeholder='Name' onChange={(e) => setName(e.target.value)} />
+                    {errors.name && <div className="error">{errors.name}</div>}
+                    <input type="text"  value={registerEmail} autoComplete="off" required placeholder='Email' onChange={(e) => setRegisterEmail(e.target.value)}/>
+                    {errors.registerEmail && <div className="error">{errors.registerEmail}</div>}
+                    <input type="password" value={registerPassword} autoComplete="new-password" required placeholder='Password' onChange={(e) => setRegisterPassword(e.target.value)}/>
+                    {errors.registerPassword && <div className="error">{errors.registerPassword}</div>}
                     <div className='sign-in-btn-div'>
                         <button className='signup-btn'  onClick={(e) => handleSignUp(e)}>Sign up</button>
                     </div>

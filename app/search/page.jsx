@@ -35,7 +35,7 @@ export default function Search() {
     const handleSearch = async () => {  
         const url = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}&include_adult=false&include_video=false&media_type=movie,tv`;
         try {
-        const response = await fetch(url, { cache: 'no-store' });
+        const response = await fetch(url, {next: { revalidate: 3600 },});
         const data = await response.json();
         const filteredResults = data.results.filter((result) => result.media_type !== "person");
         setResults(filteredResults);

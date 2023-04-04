@@ -28,7 +28,7 @@ export default function AllTv() {
           if (endYear) {
             url += `&first_air_date.lte=${endYear}-12-31`;
           }
-          const response = await fetch(url);
+          const response = await fetch(url,  {next: { revalidate: 3600 },});
           const data = await response.json();
           setTv(data.results);
         }

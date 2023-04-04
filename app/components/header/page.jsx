@@ -14,7 +14,8 @@ export default function Header() {
   
   const router = useRouter();
   const [isActive, setIsActive] = useState(false)
-  const { signout, userName, userImage } = useContext(UserContext);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const { signout, userName, userImage, userAt } = useContext(UserContext);
 
   const handleDropdown = () => {
     setIsActive(prev => !prev)
@@ -31,7 +32,11 @@ export default function Header() {
     }
 };
 
-console.log(userImage)
+const imageLoad = () => {
+  setImageLoaded(true);
+};
+
+
 
 
       return (
@@ -61,13 +66,13 @@ console.log(userImage)
                       {userName ?
                       <>
                       <li className='profile-icon-div'>
-                        <div onClick={handleDropdown} className='profile-nav-image'>
-                            <Image src={userImage} alt='profilepic'  width={100} height={100}/>
+                        <div onClick={handleDropdown} className='profile-nav-image' >
+                            <Image src={userImage} alt='profilepic' className={`${!imageLoaded ? "" : "transparent"}`} onLoad={() => imageLoad} width={100} height={100}/>
                         </div>
                         <div className={isActive ? 'profile-dropdown': 'profile-dropdown hidden'}>
                           <ul>
                             <li>
-                            <Link onClick={handleDropdown} href={`/${userName}`}>
+                            <Link onClick={handleDropdown} href={`/${userAt}`}>
                               Profile
                             </Link>
                             </li>

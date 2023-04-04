@@ -12,23 +12,19 @@ export default function ProfileRoutes ({ params }) {
 
     const { profileRoutes } = params
 
-    const { userName, userID, db} = useContext(UserContext);
+    const { userName, userID, db, userAt, userImage} = useContext(UserContext);
     
     const [userProfile, setUserProfile] = useState(null);
     const [profileID, setProfileID] = useState(null);
     const usersRef = collection(db, 'users');
 
-console.log(userName)
-
-const q = query(usersRef, where("name", "==", profileRoutes));
-
+    const q = query(usersRef, where("at", "==", profileRoutes));
 
    
 useEffect(() => {
-    if (userName === profileRoutes) {
+    if (userAt === profileRoutes) {
         setProfileID(userID);
         setUserProfile(true);
-        console.log('hi')
     } else {
         setUserProfile(false);
         onSnapshot(q, (querySnapshot) => {
@@ -49,7 +45,9 @@ useEffect(() => {
         <div className="">
         {profileID ? (
             profileID !== 404 ? (
-                <Profile profileID={profileID} userProfile={userProfile} />
+                <Profile    
+                        profileID={profileID}   
+                        userProfile={userProfile} />
             ) : (
 
                 <p>Not found</p>
