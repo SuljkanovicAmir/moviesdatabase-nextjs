@@ -12,6 +12,7 @@ import resizeFile from "../components/functions/resizeFile";
 import Image from "next/image";
 import { UserContext } from '../context/UserContext';
 import validateSignupForm from "../components/functions/validateSignupForm";
+import { motion } from "framer-motion";
 
 export default function SignUp() {
 
@@ -83,7 +84,17 @@ export default function SignUp() {
 
 
     return (
-        <div className="sign-in-page">
+
+    <motion.div
+        className='sign-in-page'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, }}
+        transition={{
+          type: "easeInOut",
+          duration: '0.4',
+          delay: 0, 
+        }}>
               <h1 className='sign-title'> Create your account </h1>
                 <div className='sign-in-div'>
                     {errors.image && <div className="error">{errors.image}</div>}
@@ -116,6 +127,6 @@ export default function SignUp() {
                     </div>
                 </div>
                
-        </div>
+        </motion.div>
     );
 }

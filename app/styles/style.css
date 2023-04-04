@@ -265,6 +265,7 @@ header > nav > ul {
   overflow: hidden;
   position: relative;
   max-width: 100%;
+  height: 80vh;
 }
 
 .slideshowSlider {
@@ -276,6 +277,16 @@ header > nav > ul {
   height: 80vh;
   background-position: center;
   background-size: cover;
+  transform: translateX(0);
+}
+
+.slide.show {
+  transform: translateX(200%);
+  transition: 1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.slide.hide {
+  transform: translateX(-200%);
+  transition: 1s cubic-bezier(0.55, 0.055, 0.675, 0.19) 5s;
 }
 
 .slide-img {
@@ -660,6 +671,9 @@ select {
   margin: 2px 0px;
 }
 
+.profile-dropdown a {
+  width: 100%;
+}
 
 .profile-nav-image {
   height: 38px;

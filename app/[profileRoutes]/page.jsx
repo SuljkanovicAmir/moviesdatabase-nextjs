@@ -1,60 +1,61 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useContext } from 'react';
-import { doc, onSnapshot, query, where,  collection } from "firebase/firestore";
-import { UserContext } from '../context/UserContext';
-import Loading from '../components/loading/page';
-import Profile from './profile/page'
+import { useState, useEffect, useContext } from "react";
+import { doc, onSnapshot, query, where, collection } from "firebase/firestore";
+import { UserContext } from "../context/UserContext";
+import Loading from "../components/loading/page";
+import Profile from "./profile/page";
+import { motion } from "framer-motion";
 
+export default function ProfileRoutes({ params }) {
+  const { profileRoutes } = params;
 
+  const { userName, userID, db, userAt, userImage } = useContext(UserContext);
 
-export default function ProfileRoutes ({ params }) {
+  const [userProfile, setUserProfile] = useState(null);
+  const [profileID, setProfileID] = useState(null);
+  const usersRef = collection(db, "users");
 
-    const { profileRoutes } = params
+  const q = query(usersRef, where("at", "==", profileRoutes));
 
-    const { userName, userID, db, userAt, userImage} = useContext(UserContext);
-    
-    const [userProfile, setUserProfile] = useState(null);
-    const [profileID, setProfileID] = useState(null);
-    const usersRef = collection(db, 'users');
-
-    const q = query(usersRef, where("at", "==", profileRoutes));
-
-   
-useEffect(() => {
+  useEffect(() => {
     if (userAt === profileRoutes) {
-        setProfileID(userID);
-        setUserProfile(true);
+      setProfileID(userID);
+      setUserProfile(true);
     } else {
-        setUserProfile(false);
-        onSnapshot(q, (querySnapshot) => {
+      setUserProfile(false);
+      onSnapshot(q, (querySnapshot) => {
         querySnapshot.docs.forEach((doc) => {
-                if (doc) {
-                    setProfileID(doc.id);
-                } else {
-                    setProfileID(404);
-                }
-            });
+          if (doc) {
+            setProfileID(doc.id);
+          } else {
+            setProfileID(404);
+          }
         });
-}
-}, [profileRoutes, userID, userName]);
+      });
+    }
+  }, [profileRoutes, userID, userName]);
 
-
-
-    return (
-        <div className="">
-        {profileID ? (
-            profileID !== 404 ? (
-                <Profile    
-                        profileID={profileID}   
-                        userProfile={userProfile} />
-            ) : (
-
-                <p>Not found</p>
-            )
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        type: "easeInOut",
+        duration: "0.4",
+        delay: 0,
+      }}
+    >
+      {profileID ? (
+        profileID !== 404 ? (
+          <Profile profileID={profileID} userProfile={userProfile} />
         ) : (
-            <Loading />
-        )}
-    </div>
-    );
+          <p>Not found</p>
+        )
+      ) : (
+        <Loading />
+      )}
+    </motion.div>
+  );
 }

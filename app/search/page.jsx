@@ -1,5 +1,6 @@
 "use client"
 
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -55,14 +56,22 @@ export default function Search() {
       };
 
     return (
-        <div className="search-div">
+      
+                  <motion.div
+        className='search-div'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0, }}
+        transition={{
+          type: "easeInOut",
+          duration: '0.4',
+          delay: 0, 
+        }}>
             <div className="input-div">
                 <label>Search for Movies and TV Shows</label>
                 <input type="text" placeholder="Search" value={query} onChange={handleQueryChange} />
             </div>
             <div className="movie-list-div"> 
-           
-        
                 <h3>Results</h3>
             {results.length > 0 &&
                 <div className="movie-list"> 
@@ -87,6 +96,6 @@ export default function Search() {
             </div>
            }
         </div>
-        </div>
+        </motion.div>
     );
 }
