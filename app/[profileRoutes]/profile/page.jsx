@@ -17,6 +17,8 @@ export default function Profile ({userProfile, profileID,  previewAvatar, setPre
     const [isActiveEdit, setEditActive] = useState(false);
     const [imageLoaded, setImageLoaded] = useState(false);
     const [followed, setFollowed] = useState(false);
+ 
+
     const usersRef = collection(db, 'users');
 
     const [profileData, setProfileData] = useState({ follows: [],
@@ -72,13 +74,10 @@ export default function Profile ({userProfile, profileID,  previewAvatar, setPre
             });
           
       }, [
-        userProfile,
         profileID,
-        userImage,
         userAt,
         userBio,
         userID,
-        userBio,
         userName,
         userFollowers,
         userFollows,

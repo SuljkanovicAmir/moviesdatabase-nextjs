@@ -671,8 +671,9 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #00000080;
+  background-color: #000000f3;
 }
+
 .profile-nav-image img {
   height: 40px;
   width: 40px;

@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../context/UserContext';
 import resizeFile from '../functions/resizeFile';
 import {updateDoc, doc } from "firebase/firestore";
-import { uploadBytes, ref } from 'firebase/storage';
+import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import Close from '../../../public/close.svg'
 import CameraIcon from '../../../public/camera.svg'
 import Image from 'next/image';
@@ -24,25 +24,33 @@ export default function({isActiveEdit, setEditActive}) {
 			setPreviewAvatar(URL.createObjectURL(updateAvatar));
 		}
 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [showAvatar]);
+	}, [showAvatar, updateAvatar, userImage]);
 
-    console.log(previewAvatar)
+  console.log(previewAvatar)
 
 
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if(currentUser) {
-       updateDoc(userRef, {
+       await updateDoc(userRef, {
         name: updateName || "", 
         bio: updateBio || "", 
     });
     if (updateAvatar !== userImage) {
-        const storagAvatareRef = ref(storage, ("avatars/" + userID + '.png'))
-        uploadBytes(storagAvatareRef, updateAvatar)
-      }
+      const storagAvatarRef = ref(storage, `avatars/${userID}.png`);
+      uploadBytes(storagAvatarRef, updateAvatar).then(() => {
+        getDownloadURL(storagAvatarRef).then((downloadURL) => {
+          setPreviewAvatar(downloadURL);
+          updateDoc(userRef, {
+            image: downloadURL
+          });
+        });
+      });
+    }
     setEditActive(false);
-}}
+}
+}
 
 
 

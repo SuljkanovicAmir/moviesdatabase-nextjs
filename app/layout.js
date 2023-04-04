@@ -1,8 +1,8 @@
 import './styles/style.css'
 import { Poppins } from 'next/font/google'
 import { UserProvider } from './context/UserContext';
-import Header from './components/header/page';
 
+import Header from './components/header/page';
 
 
 const poppins = Poppins({

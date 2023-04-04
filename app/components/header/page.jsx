@@ -7,15 +7,16 @@ import Logo from '../../../public/logo.png'
 import SearchIcon from '../../../public/search.svg'
 import { UserContext } from '../../context/UserContext';
 import { useRouter } from 'next/navigation';
+import Loading from '../loading/page';
+import React from 'react';
 
 
-
-export default function Header() {
+const Header = React.memo(() => { 
   
   const router = useRouter();
   const [isActive, setIsActive] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false);
-  const { signout, userName, userImage, userAt } = useContext(UserContext);
+  const { signout, userName, userImage, userAt, pending  } = useContext(UserContext);
 
   const handleDropdown = () => {
     setIsActive(prev => !prev)
@@ -36,6 +37,10 @@ const imageLoad = () => {
   setImageLoaded(true);
 };
 
+
+if(pending) {
+  return <Loading />
+}
 
 
 
@@ -62,12 +67,12 @@ const imageLoad = () => {
                       <Link href="/search" className='search'>
                         <Image className="search-img" priority src={SearchIcon} alt='logo' width={500} height={500}/>
                       </Link>
-                    </li>
+                    </li> <>
                       {userName ?
-                      <>
+                     
                       <li className='profile-icon-div'>
                         <div onClick={handleDropdown} className='profile-nav-image' >
-                            <Image src={userImage} alt='profilepic' className={`${!imageLoaded ? "" : "transparent"}`} onLoad={() => imageLoad} width={100} height={100}/>
+                            <Image src={userImage} alt='profilepic' priority className={`${!imageLoaded ? "" : "transparent"}`} onLoad={() => imageLoad} width={100} height={100}/>
                         </div>
                         <div className={isActive ? 'profile-dropdown': 'profile-dropdown hidden'}>
                           <ul>
@@ -82,18 +87,21 @@ const imageLoad = () => {
                           </ul>
                         </div>
                       </li>
-                      </>
+  
                       : 
                       <li className='sign-in-btn'>
                         <Link href="/signin">
                           Sign In
                         </Link>
                        </li>
-                      }
+                    
+                      }    </> 
                   </ul>
                 </nav>
           </header>
           )
         
               
-}
+        });
+
+export default Header

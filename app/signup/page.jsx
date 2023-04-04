@@ -5,9 +5,9 @@ import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/auth'
-import { setDoc, doc} from "firebase/firestore";
+import { setDoc, doc, updateDoc} from "firebase/firestore";
 import Camera from '../../public/camera.svg'
-import { uploadBytes, ref } from 'firebase/storage';
+import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import resizeFile from "../components/functions/resizeFile";
 import Image from "next/image";
 import { UserContext } from '../context/UserContext';
@@ -28,9 +28,9 @@ export default function SignUp() {
     useEffect(() => {
         if(image) {
             setPreviewAvatar(URL.createObjectURL(image));
+        } else {
+            setPreviewAvatar(null);
         }
-	
-
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [image]);
 
@@ -53,10 +53,19 @@ export default function SignUp() {
                 joinDate: new Date(),
             })
             if(image) {
-                const storageAvatarRef = ref(storage, "avatars/" + cred.user.uid + '.png')
-                uploadBytes(storageAvatarRef, image)
+                const storagAvatarRef = ref(storage, `avatars/${cred.user.uid}.png`);
+                const userRef = doc(db, 'users', cred.user.uid);
+
+                uploadBytes(storagAvatarRef, image).then(() => {
+                    getDownloadURL(storagAvatarRef).then((downloadURL) => {
+                    updateDoc(userRef, {
+                        image: downloadURL
+                    });
+                });
+                });
             }
             }).then(() => {
+                setImage(null);
                 router.push('/')
             });
         }
@@ -96,7 +105,7 @@ export default function SignUp() {
                     {errors.name && <div className="error">{errors.name}</div>}
                     <input type="text"  value={registerEmail} autoComplete="off" required placeholder='Email' onChange={(e) => setRegisterEmail(e.target.value)}/>
                     {errors.registerEmail && <div className="error">{errors.registerEmail}</div>}
-                    <input type="password" value={registerPassword} autoComplete="new-password" required placeholder='Password' onChange={(e) => setRegisterPassword(e.target.value)}/>
+                    <input type="password" value={registerPassword} autoComplete="off" required placeholder='Password' onChange={(e) => setRegisterPassword(e.target.value)}/>
                     {errors.registerPassword && <div className="error">{errors.registerPassword}</div>}
                     <div className='sign-in-btn-div'>
                         <button className='signup-btn'  onClick={(e) => handleSignUp(e)}>Sign up</button>

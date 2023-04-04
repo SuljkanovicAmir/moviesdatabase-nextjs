@@ -30,6 +30,7 @@ export const UserProvider = ({ children }) => {
   const [userID, setUserID] = useState(null);
   const [pending, setPending] = useState(true);
   const [userData, setUserData] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const usersRef = collection(db, 'users');
 
@@ -41,9 +42,6 @@ export const UserProvider = ({ children }) => {
         onSnapshot(doc(usersRef, currentUser.uid), (doc) => {
           let data = doc.data();
           console.log(data)
-          setTimeout(() => {
-            setPending(false);
-          }, 200);
           setUserData((u) => ({
             ...u,
             name: data.name,
@@ -54,36 +52,33 @@ export const UserProvider = ({ children }) => {
             goingToWatch: data.goingToWatch || [],
             at: data.at
           })); 
+            const storageAvatarRef = ref(storage, "avatars/" + currentUser.uid + ".png");
+
+            getDownloadURL(storageAvatarRef)
+              .then((url) => {
+                setUserData((u) => ({ ...u, image: url }));
+              })
+              .catch(() => {
+                console.log("set image again");
+                setUserData((u) => ({ ...u, image: ProfileImg }));
+              });
+              setPending(false);
         }, (err) => console.log(err)
         );
-
-        const storageAvatarRef = ref(storage, "avatars/" + currentUser.uid + ".png");
-
-        getDownloadURL(storageAvatarRef)
-          .then((url) => {
-            setUserData((u) => ({ ...u, image: url }));
-          })
-          .catch(() => {
-            console.log("set image again");
-            setUserData((u) => ({ ...u, image: ProfileImg }));
-          });
-
         } else {
-          setTimeout(() => {
-            setPending(false);
-          }, 200);
           setUserData({ image: ProfileImg });
+          setPending(false);
         }
     });
-
   },[])
 
 
-    if(pending) {
-      <div>
-        <Loading />
-      </div>
+  useEffect(() => {
+    if (!pending) {
+      setLoggedIn(true);
     }
+  }, [pending]);
+
 
  const signIn = (email, password) =>  {
     return signInWithEmailAndPassword(auth, email, password)
@@ -106,7 +101,10 @@ export const UserProvider = ({ children }) => {
                                 userFollowers: userData.followers, 
                                 userAt: userData.at, 
                                 db,
-                                storage
+                                storage,
+                                pending,
+                                loggedIn
+
                                 }}>
       {children}
     </UserContext.Provider>

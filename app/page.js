@@ -1,8 +1,11 @@
 import Image from 'next/image'
 import Loading from './components/loading/page';
-import UpcomingMovies from './components/upcomingMovies/page';
 import dynamic from 'next/dynamic';
 
+const UpcomingMovies = dynamic(() => import('./components/upcomingMovies/page'), {
+  loading: () => <Loading />,
+  ssr: false 
+})
 
 const Trending = dynamic(() => import('./components/trending/page'), {
   loading: () => <Loading />,
@@ -34,7 +37,6 @@ export default async function Home() {
     <main>
       <UpcomingMovies/>
       <Trending />
-      <Loading />
       {res.results.length > 0 &&
       <div className='movie-list-div'>
       <h3>Popular movies</h3>
