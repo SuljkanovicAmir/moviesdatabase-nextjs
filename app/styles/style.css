@@ -277,16 +277,6 @@ header > nav > ul {
   height: 80vh;
   background-position: center;
   background-size: cover;
-  transform: translateX(0);
-}
-
-.slide.show {
-  transform: translateX(200%);
-  transition: 1s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-}
-.slide.hide {
-  transform: translateX(-200%);
-  transition: 1s cubic-bezier(0.55, 0.055, 0.675, 0.19) 5s;
 }
 
 .slide-img {
