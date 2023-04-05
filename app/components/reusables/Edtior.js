@@ -26,9 +26,6 @@ export default function({isActiveEdit, setEditActive}) {
 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [showAvatar, updateAvatar, userImage]);
 
-  console.log(previewAvatar)
-
-
   
   const handleSubmit = async (e) => {
     e.preventDefault()

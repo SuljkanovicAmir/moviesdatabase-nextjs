@@ -41,7 +41,6 @@ export const UserProvider = ({ children }) => {
         setUserID(currentUser.uid);
         onSnapshot(doc(usersRef, currentUser.uid), (doc) => {
           let data = doc.data();
-          console.log(data)
           setUserData((u) => ({
             ...u,
             name: data.name,

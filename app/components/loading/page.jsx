@@ -4,10 +4,6 @@ import { useEffect } from "react";
 
 export default function Loading() {
     
-    useEffect(() => {
-        console.log('hias')
-    },[])
-
     return (
         <div className="loading-div">
             <div className="spinner">
