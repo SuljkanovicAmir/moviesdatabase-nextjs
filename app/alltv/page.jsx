@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Trending from "../components/Trending";
 
 export default function AllTv() {
   const [tv, setTv] = useState([]);
@@ -11,12 +12,12 @@ export default function AllTv() {
   const [genre, setGenre] = useState("");
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");
-
-  const imagePath = "https://image.tmdb.org/t/p/w300";
+  const [isActive, setIsActive] = useState(false)
+  const imagePath = "https://image.tmdb.org/t/p/w200";
 
   useEffect(() => {
     async function fetchtv() {
-      let url = `https://api.themoviedb.org/3/discover/tv?sort_by=${sort}&api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+      let url = `https://api.themoviedb.org/3/discover/tv?sort_by=${sort}&api_key=${process.env.NEXT_PUBLIC_API_KEY}&with_original_language=en`;
       if (genre) {
         url += `&with_genres=${genre}`;
       }
@@ -62,8 +63,10 @@ export default function AllTv() {
         delay: 0,
       }}
     >
+      <Trending mediaType='tv' />
       <h1>TV</h1>
-      <div className="filters">
+      <button className="filters-btn" onClick={() => setIsActive(true)}>Filters</button>
+      <div className={isActive ? "filters active" :"filters" }>
         <div>
           <label htmlFor="genre">Filter by genre: </label>
           <select id="genre" value={genre} onChange={handleGenreChange}>
@@ -93,7 +96,7 @@ export default function AllTv() {
             id="startYear"
             value={startYear}
             placeholder="Start year"
-            min="1920"
+            min="1950"
             onChange={handleStartYearChange}
           />
         </div>
@@ -102,6 +105,7 @@ export default function AllTv() {
           <input
             type="number"
             id="endYear"
+            min="1950"
             placeholder="End Year"
             value={endYear}
             onChange={handleEndYearChange}
@@ -120,6 +124,7 @@ export default function AllTv() {
             <option value="name.desc">Title (Desc)</option>
           </select>
         </div>
+        <div className="filters-btn" onClick={() => setIsActive(false)}>Submit</div>
       </div>
       <div className="movie-list-div">
         <div className="movie-grid">

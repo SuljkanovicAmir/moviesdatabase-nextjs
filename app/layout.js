@@ -11,7 +11,7 @@ const poppins = Poppins({
 })
 
 export const metadata = {
-  title: 'MovieInfo',
+  title: 'Cineboxd',
   description: 'Personal Project',
 }
 

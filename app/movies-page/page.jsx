@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Trending from "../components/Trending";
 
 export default function AllMovies() {
   const [movies, setMovies] = useState([]);
@@ -11,6 +12,7 @@ export default function AllMovies() {
   const [genre, setGenre] = useState("");
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");
+  const [isActive, setIsActive] = useState(false)
 
   const imagePath = "https://image.tmdb.org/t/p/w300";
 
@@ -62,8 +64,10 @@ export default function AllMovies() {
         delay: 0,
       }}
     >
-      <h1>Movies</h1>
-      <div className="filters">
+      <Trending mediaType='movie' />
+      <h1>Movies</h1>  
+      <button className="filters-btn" onClick={() => setIsActive(true)}>Filters</button>
+      <div className={isActive ? "filters active" :"filters" }>
         <div>
           <label htmlFor="genre">Filter by genre: </label>
           <select id="genre" value={genre} onChange={handleGenreChange}>
@@ -119,6 +123,7 @@ export default function AllMovies() {
             <option value="vote_average.asc">Rating (Asc)</option>
           </select>
         </div>
+        <div className="filters-btn" onClick={() => setIsActive(false)}>Submit</div>
       </div>
       <div className="movie-list-div">
         <div className="movie-grid">

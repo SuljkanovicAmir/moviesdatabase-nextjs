@@ -3,14 +3,14 @@ import Loading from "./components/loading/page";
 import dynamic from "next/dynamic";
 
 const UpcomingMovies = dynamic(
-  () => import("./components/upcomingMovies/page"),
+  () => import("./components/UpcomingMovies"),
   {
     loading: () => <Loading />,
     ssr: false,
   }
 );
 
-const Trending = dynamic(() => import("./components/trending/page"), {
+const Trending = dynamic(() => import("./components/Trending"), {
   loading: () => <Loading />,
   ssr: false,
 });
@@ -33,17 +33,17 @@ const PopularMovies = dynamic(() => import("./components/popularMovies/page"), {
 export default async function Home() {
   const data = await fetch(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-    { cache: "no-store" }
+    {next: { revalidate: 3600 }}
   );
   const res = await data.json();
 
   return (
     <main>
+      <Trending mediaType="all"/>
       <UpcomingMovies />
-      <Trending />
       {res.results.length > 0 && (
         <div className="movie-list-div">
-          <h3>Popular movies</h3>
+          <h3>Popular Movies</h3>
           <div className="movie-list">
             {res.results.map((movie) => (
               <PopularMovies
