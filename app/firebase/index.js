@@ -3,11 +3,9 @@ import { getFirebaseConfig } from './firebase.config';
 import { getFirestore} from "firebase/firestore";
 
 
-let app;
-let db;
 
-     app = initializeApp(getFirebaseConfig());
-     db = getFirestore(app);
+   const app = initializeApp(getFirebaseConfig());
+   const  db = getFirestore(app);
 
 
 

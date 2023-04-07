@@ -1,7 +1,8 @@
 import Image from "next/image"
 import dynamic from 'next/dynamic'
-import MovieCast from "./mediaCast/page"
 import MediaCast from "./mediaCast/page"
+import AddToListButton from '../../components/AddToListButton'
+
 
 const SimilarMovies = dynamic(() => import("./similarMovies/page"), {
   loading: () => <p>Loading...</p>,
@@ -21,6 +22,7 @@ export default async function MovieDetail ( {params}) {
             <div className="details">
                 <div className="backdrop-div">
                     <div className="backdrop"></div>
+                    <AddToListButton movieID={movie} />
                     <Image className="detailed-poster" priority src={imagePath + res.backdrop_path} alt={res.title} width={1000} height={1000}/>
                 </div>
                 <div className="details-info">

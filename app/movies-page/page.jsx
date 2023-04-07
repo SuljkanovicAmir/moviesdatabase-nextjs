@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Trending from "../components/Trending";
+import Pagination from "../components/Pagination";
 
 export default function AllMovies() {
   const [movies, setMovies] = useState([]);
@@ -12,13 +13,15 @@ export default function AllMovies() {
   const [genre, setGenre] = useState("");
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");
-  const [isActive, setIsActive] = useState(false)
+  const [isActive, setIsActive] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const imagePath = "https://image.tmdb.org/t/p/w300";
 
   useEffect(() => {
     async function fetchMovies() {
-      let url = `https://api.themoviedb.org/3/discover/movie?sort_by=${sort}&api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+      let url = `https://api.themoviedb.org/3/discover/movie?sort_by=${sort}&page=${page}&api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
       if (genre) {
         url += `&with_genres=${genre}`;
       }
@@ -30,11 +33,13 @@ export default function AllMovies() {
       }
       const response = await fetch(url, { next: { revalidate: 3600 } });
       const data = await response.json();
+
       setMovies(data.results);
+      setTotalPages(data.total_pages);
     }
 
     fetchMovies();
-  }, [genre, sort, startYear, endYear]);
+  }, [genre, sort, startYear, endYear, page]);
 
   function handleSortChange(event) {
     setSort(event.target.value);
@@ -64,10 +69,12 @@ export default function AllMovies() {
         delay: 0,
       }}
     >
-      <Trending mediaType='movie' />
-      <h1>Movies</h1>  
-      <button className="filters-btn" onClick={() => setIsActive(true)}>Filters</button>
-      <div className={isActive ? "filters active" :"filters" }>
+      <Trending mediaType="movie" />
+      <h1>Movies</h1>
+      <button className="filters-btn" onClick={() => setIsActive(true)}>
+        Filters
+      </button>
+      <div className={isActive ? "filters active" : "filters"}>
         <div>
           <label htmlFor="genre">Filter by genre: </label>
           <select id="genre" value={genre} onChange={handleGenreChange}>
@@ -123,7 +130,9 @@ export default function AllMovies() {
             <option value="vote_average.asc">Rating (Asc)</option>
           </select>
         </div>
-        <div className="filters-btn" onClick={() => setIsActive(false)}>Submit</div>
+        <div className="filters-btn" onClick={() => setIsActive(false)}>
+          Submit
+        </div>
       </div>
       <div className="movie-list-div">
         <div className="movie-grid">
@@ -145,6 +154,7 @@ export default function AllMovies() {
             </Link>
           ))}
         </div>
+        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </div>
     </motion.div>
   );

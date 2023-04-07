@@ -3,11 +3,11 @@ import { useState, useEffect, useContext } from 'react';
 
 import Link from 'next/link';
 import Image from 'next/image';
-import Logo from '../../../public/logo.png'
-import SearchIcon from '../../../public/search.svg'
-import { UserContext } from '../../context/UserContext';
+import Logo from '../../public/logo.png'
+import SearchIcon from '../../public/search.svg'
+import { UserContext } from '../context/UserContext';
 import { useRouter } from 'next/navigation';
-import Loading from '../loading/page';
+import Loading from './Loading';
 import React from 'react';
 
 

@@ -182,7 +182,7 @@ header > nav > ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, 215px);
   min-width: 100%;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .movie-grid img {
@@ -211,6 +211,7 @@ header > nav > ul {
 
 .all-movies-tv h1 {
   margin-bottom: 20px;
+  margin-left: 40px;
 }
 
 .all-movies-tv .movie-list-div {
@@ -224,6 +225,7 @@ header > nav > ul {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  padding-left: 40px;
 }
 
 .img-description {
@@ -596,7 +598,6 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 .cast-list p {
   margin-top: 8px;
@@ -1067,19 +1068,56 @@ input[type="file"] {
 
 
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+  align-items: center;
+}
+
+.padding-number {
+  padding: 10px 10px;
+
+}
+
+.pagination-btn {
+  padding: 6px 12px;
+  margin: 0px 10px;
+}
+
+.filters-btn {
+  display: none;
+}
 
 
 
+.dropdown {
+  position: absolute;
+  z-index: 16;
+  bottom: 30%;
+  right: 10%;
+}
 
+.dropdown > button {
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+}
 
+.dropdown img {
+  filter: invert(1);
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
 
+.dropdown-menu {
+  position: absolute;
+}
 
-
-
-
-
-
-
+.watched {
+  font-weight: 800;
+}
 
 
 
@@ -1229,10 +1267,12 @@ input[type="file"] {
     right: 0;
     background: black;
     padding-top: 100px;
+    z-index: 2;
   }
 
   .filters {
     display: none;
+    padding-left: unset;
   }
 
   .filters-btn {
@@ -1265,7 +1305,7 @@ input[type="file"] {
   }
   
   .cast-list a {
-    height: 180px;
+    height: 230px;
     min-width: 140px;
   }
   .cast-list p {
@@ -1276,8 +1316,13 @@ input[type="file"] {
     width: 120px;
   }
   
+
   .movie-grid img {
     max-width: 152px;
+  }
+
+  .movie-grid a {
+    height: 188px;
   }
 
   .profile-nav {
@@ -1381,6 +1426,7 @@ input[type="file"] {
   font-size: 2.2em;
   top: unset;
   bottom: 6%;
+  z-index: 1;
 }
 
 .slideshow {

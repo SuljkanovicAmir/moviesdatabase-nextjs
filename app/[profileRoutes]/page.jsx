@@ -3,7 +3,7 @@
 import { useState, useEffect, useContext } from "react";
 import { doc, onSnapshot, query, where, collection } from "firebase/firestore";
 import { UserContext } from "../context/UserContext";
-import Loading from "../components/loading/page";
+import Loading from "../components/Loading";
 import Profile from "./profile/page";
 import { motion } from "framer-motion";
 

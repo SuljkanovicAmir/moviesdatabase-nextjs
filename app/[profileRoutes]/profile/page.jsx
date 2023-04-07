@@ -8,8 +8,15 @@ import { doc, onSnapshot, collection } from "firebase/firestore";
 import { ref, getDownloadURL } from 'firebase/storage';
 import Link from 'next/link';
 import Editor from '../../components/reusables/Edtior'
+import Loading from '@/app/components/Loading';
+import dynamic from 'next/dynamic';
 
-export default function Profile ({userProfile, profileID,  previewAvatar, setPreviewAvatar}) {
+const ProfileFeed = dynamic(() => import("@/app/components/ProfileFeed"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+
+export default function Profile ({userProfile, profileID}) {
 
     const { userName, userImage, userBio, userAt, userID, db, storage, userFollowers, userFollows } = useContext(UserContext);
     
@@ -136,14 +143,16 @@ export default function Profile ({userProfile, profileID,  previewAvatar, setPre
                        </div>
                        <div className='profile-main'>
                            <div className='profile-nav'>
-                               <div>
+                               <div className='watched'>
                                    Watched
                                </div>
                                <div>
                                    Watchlist
                                </div>
                            </div>
-           
+                           <div>
+                            <ProfileFeed profileID={profileID}/>
+                           </div>
                        </div>
                    </div>
     </>

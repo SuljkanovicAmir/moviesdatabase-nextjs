@@ -1,4 +1,4 @@
-import Loading from "@/app/components/loading/page";
+import Loading from "@/app/components/Loading";
 import Image from "next/image"
 import dynamic from 'next/dynamic'
 import MediaCast from "@/app/movie/[movie]/mediaCast/page";

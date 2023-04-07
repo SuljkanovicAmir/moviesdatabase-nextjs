@@ -9,7 +9,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '../firebase/auth'
 import { collection, onSnapshot, doc } from "firebase/firestore";
-import Loading from '../components/loading/page';
+import Loading from '../components/Loading';
 import ProfileImg from '../../public/blank.png'
 
 import { initializeApp } from 'firebase/app';
@@ -99,6 +99,7 @@ export const UserProvider = ({ children }) => {
                                 userBio: userData.bio,
                                 userFollowers: userData.followers, 
                                 userAt: userData.at, 
+                                userToWatch: userData.goingToWatch,
                                 db,
                                 storage,
                                 pending,

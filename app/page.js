@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Loading from "./components/loading/page";
+import Loading from "./components/Loading";
 import dynamic from "next/dynamic";
 
 const UpcomingMovies = dynamic(
@@ -15,17 +15,17 @@ const Trending = dynamic(() => import("./components/Trending"), {
   ssr: false,
 });
 
-const TopRatedTV = dynamic(() => import("./components/topRatedTv/page"), {
+const TopRatedTV = dynamic(() => import("./components/TRatedTV"), {
   loading: () => <Loading />,
   ssr: false,
 });
 
-const TopRated = dynamic(() => import("./components/topRated/page"), {
+const TopRated = dynamic(() => import("./components/TRatedMovies"), {
   loading: () => <Loading />,
   ssr: false,
 });
 
-const PopularMovies = dynamic(() => import("./components/popularMovies/page"), {
+const PopularMovies = dynamic(() => import("./components/PopularMovies"), {
   loading: () => <Loading />,
   ssr: false,
 });

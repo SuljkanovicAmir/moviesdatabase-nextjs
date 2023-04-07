@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Trending from "../components/Trending";
+import Pagination from "../components/Pagination";
 
 export default function AllTv() {
   const [tv, setTv] = useState([]);
@@ -13,11 +14,13 @@ export default function AllTv() {
   const [startYear, setStartYear] = useState("");
   const [endYear, setEndYear] = useState("");
   const [isActive, setIsActive] = useState(false)
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const imagePath = "https://image.tmdb.org/t/p/w200";
 
   useEffect(() => {
     async function fetchtv() {
-      let url = `https://api.themoviedb.org/3/discover/tv?sort_by=${sort}&api_key=${process.env.NEXT_PUBLIC_API_KEY}&with_original_language=en`;
+      let url = `https://api.themoviedb.org/3/discover/tv?sort_by=${sort}&page=${page}&api_key=${process.env.NEXT_PUBLIC_API_KEY}&with_original_language=en`;
       if (genre) {
         url += `&with_genres=${genre}`;
       }
@@ -30,10 +33,11 @@ export default function AllTv() {
       const response = await fetch(url, { next: { revalidate: 3600 } });
       const data = await response.json();
       setTv(data.results);
+      setTotalPages(data.total_pages);
     }
 
     fetchtv();
-  }, [genre, sort, startYear, endYear]);
+  }, [genre, sort, startYear, endYear, page]);
 
   function handleSortChange(event) {
     setSort(event.target.value);
@@ -146,6 +150,7 @@ export default function AllTv() {
             </Link>
           ))}
         </div>
+        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       </div>
     </motion.div>
   );
