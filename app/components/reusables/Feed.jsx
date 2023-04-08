@@ -11,19 +11,19 @@ const Content = dynamic(() => import("./Content"), {
 
 function Feed(props) {
     
-  const { watchedData} = props;
+  const { watchedData, image, at} = props;
 
   console.log(watchedData)
 
     const watchedContent = watchedData.map((media) => {
-        return <Content key={media.id} movieID={media.movieID} />;
+        return <Content key={media.id} rating={media.rating} at={at} image={image}movieID={media.movieID} />;
     });
 
   
     return ( 
     <div className='feed'>
-        <div className="movie-list-div"> 
-          <div className="movie-list"> 
+        <div className="profile-watched-content-div"> 
+          <div className="profile-watched-list"> 
             {watchedContent}
           </div>
         </div>

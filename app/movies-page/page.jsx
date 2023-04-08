@@ -43,18 +43,22 @@ export default function AllMovies() {
 
   function handleSortChange(event) {
     setSort(event.target.value);
+    setPage(1)
   }
 
   function handleGenreChange(event) {
     setGenre(event.target.value);
+    setPage(1)
   }
 
   function handleStartYearChange(event) {
     setStartYear(event.target.value);
+    setPage(1)
   }
 
   function handleEndYearChange(event) {
     setEndYear(event.target.value);
+    setPage(1)
   }
 
   return (

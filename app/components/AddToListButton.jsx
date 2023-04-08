@@ -43,10 +43,10 @@ export default function AddToListButton({movieID}) {
       {isDropdownOpen && (
         <div className="dropdown-menu">
           <button className="dropdown-item" onClick={(e) => handleAddToWatchlistClick(e)}>
-            Add to Watchlist
+           Watchlist
           </button>
           <button className="dropdown-item" onClick={handleAddToWatchedClick}>
-            Add to Watched List
+            Watched
           </button>
         </div>
       )}

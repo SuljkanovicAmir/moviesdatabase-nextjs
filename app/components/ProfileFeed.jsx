@@ -8,7 +8,7 @@ import { collection, onSnapshot, orderBy, query, where } from "firebase/firestor
 
 function ProfileFeed(props) {
 
-    const { profileID } = props;
+    const { profileID, image, at } = props;
 
     const [watchedData, setWatchedData] = useState([]);
     const mediaRef = collection(db, 'media');
@@ -36,7 +36,7 @@ useEffect(() =>{
 
     return (
         <>
-            {watchedData.length ? <Feed watchedData={watchedData}/> : <></>}
+            {watchedData.length ? <Feed watchedData={watchedData} image={image} at={at}/> : <></>}
         </>
     )
 }

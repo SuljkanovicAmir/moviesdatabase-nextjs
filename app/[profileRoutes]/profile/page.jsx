@@ -151,7 +151,7 @@ export default function Profile ({userProfile, profileID}) {
                                </div>
                            </div>
                            <div>
-                            <ProfileFeed profileID={profileID}/>
+                            <ProfileFeed image={profileData.image} at={profileData.at} profileID={profileID}/>
                            </div>
                        </div>
                    </div>

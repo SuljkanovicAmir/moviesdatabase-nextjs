@@ -15,11 +15,19 @@ async function fetchContent(movieID) {
   }
  
 
-export default function Content ({movieID}) {
+export default function Content ({movieID, image, at, rating}) {
 
     const imagePath = "https://image.tmdb.org/t/p/w200";
     const [content, setContent] = useState(null);
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+
     
+  const imageLoad = () => {
+		setImageLoaded(true);
+	};
+
+
     useEffect(() => {
         async function getContent() {
           console.log(movieID)
@@ -29,13 +37,32 @@ export default function Content ({movieID}) {
     
         getContent();
       }, [movieID]);
-
+      
       if(!content) {
         return <Loading />
       }
       return (
-            <Link key={content.id}  href={`${content.title ? `/movie/${content.id}` :  `/tv/${content.id}`}`}>  
-                <Image className="poster"src={imagePath + content.poster_path} priority alt={content.title ? content.title : content.name} width={500} height={500}/>
-            </Link>
+        <div className="profile-content">
+            <div className="profile-content-header">
+                <h1>{content.title}</h1>
+                <div>
+                  <p className="user-at">@{at}</p>
+                  <div className={`${!imageLoaded ? "" : "transparent"}`} onLoad={imageLoad}>
+                    <div  className='avatar'   style={{backgroundImage: `url(${image})`}}></div>
+                  </div>
+                </div>
+            </div>
+            <div className="profile-content-main">
+              <Link key={content.id}  href={`${content.title ? `/movie/${content.id}` :  `/tv/${content.id}`}`}>  
+                  <Image className="poster"src={imagePath + content.poster_path} priority alt={content.title ? content.title : content.name} width={500} height={500}/>
+              </Link>
+              <div className="profile-content-info">
+                  <span className="vote-average">
+                      Rating: <span>{rating}</span>
+                  </span>
+                  <span>Review: The first was so funny but I doubt the second is good. The first was so funny but I doubt the second is good</span>
+              </div>
+            </div>
+        </div>
     );
 }
