@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { UserContext } from '../context/UserContext';
 
 export default function AddToListButton({movieID}) {
-  const {userName, userAt, userID, userToWatch} = useContext(UserContext);
+  const {userName, userAt, userID, userToWatch, userWatched} = useContext(UserContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
 
@@ -15,24 +15,36 @@ export default function AddToListButton({movieID}) {
   }
 
   const handleAddToWatchlistClick = (e) => {
-    addToWatchList(e)
+    addToWatchlist(e)
     // TODO: Add logic to add movie/TV show to watchlist
     setIsDropdownOpen(false);
   }
 
-  const handleAddToWatchedClick = () => {
+  const handleAddToWatchedClick = (e) => {
+    addToWatched(e)
     // TODO: Add logic to add movie/TV show to watched list
     setIsDropdownOpen(false);
   }
 
-  const addToWatchList = (e) => {
+  const addToWatched = (e) => {
     e.preventDefault();
-      import("./functions/addToWatchlist.js")
-            .then((addToWatchlist) =>
-              addToWatchlist.default({ userName, userAt, userID, userToWatch, movieID})
+      import("./functions/addToWatched.js")
+            .then((addToWatched) =>
+              addToWatched.default({ userName, userAt, userID, userWatched, movieID})
             )
             .catch((err) => console.log(err));   
 	};
+
+
+  const addToWatchlist = (e) => {
+    e.preventDefault();
+      import("./functions/addToWatchlist.js")
+            .then((addToWatchlist) =>
+            addToWatchlist.default({ userName, userAt, userID, userToWatch, movieID})
+            )
+            .catch((err) => console.log(err));   
+	};
+
 
 
   return (
@@ -45,7 +57,7 @@ export default function AddToListButton({movieID}) {
           <button className="dropdown-item" onClick={(e) => handleAddToWatchlistClick(e)}>
            Watchlist
           </button>
-          <button className="dropdown-item" onClick={handleAddToWatchedClick}>
+          <button className="dropdown-item" onClick={(e) => handleAddToWatchedClick(e)}>
             Watched
           </button>
         </div>

@@ -4,8 +4,16 @@ import { useState, useEffect, useContext } from "react";
 import { doc, onSnapshot, query, where, collection } from "firebase/firestore";
 import { UserContext } from "../context/UserContext";
 import Loading from "../components/Loading";
-import Profile from "./profile/page";
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+
+
+const Profile = dynamic(() => import("./profile/page"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+
+
 
 export default function ProfileRoutes({ params }) {
   const { profileRoutes } = params;

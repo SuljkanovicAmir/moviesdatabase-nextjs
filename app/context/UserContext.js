@@ -100,6 +100,7 @@ export const UserProvider = ({ children }) => {
                                 userFollowers: userData.followers, 
                                 userAt: userData.at, 
                                 userToWatch: userData.goingToWatch,
+                                userWatched: userData.watched,
                                 db,
                                 storage,
                                 pending,

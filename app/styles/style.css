@@ -1129,8 +1129,10 @@ input[type="file"] {
   padding: 7px 14px;
 }
 
-.watched {
-  font-weight: 800;
+.watched,
+.watchlist {
+  color: rgba(226, 226, 226, 0.699);
+  cursor: pointer;
 }
 
 
@@ -1226,7 +1228,11 @@ input[type="file"] {
 
 
 
-
+.watchlist.active-tab,
+.watched.active-tab {
+  font-weight: 800;
+  color: white;
+}
 
 
 
@@ -1453,8 +1459,12 @@ input[type="file"] {
     gap: 15px;
     margin: 0px 20px;
   }
-
   .profile-nav div {
+    font-size: 1.2em;
+  }
+
+  .watched,
+  .watchlist {
     padding: 10px 0px;
     font-size: 1.2em;
 }

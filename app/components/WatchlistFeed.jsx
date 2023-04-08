@@ -6,12 +6,12 @@ import Feed from './reusables/Feed';
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 
 
-function ProfileFeed(props) {
+function WatchlistFeed(props) {
 
     const { profileID, image, at } = props;
 
-    const [watchedData, setWatchedData] = useState([]);
-    const mediaRef = collection(db, 'media');
+    const [ watchlistData, setWatchlistData] = useState([]);
+    const mediaRef = collection(db, 'watchlist');
 
 
 useEffect(() =>{
@@ -23,10 +23,11 @@ useEffect(() =>{
         querySnapshot.forEach((doc) => {
             tempArray.push({ ...doc.data(), id: doc.id });
         })
-        setWatchedData(tempArray);
+        setWatchlistData(tempArray);
     })
+
+    console.log(watchlistData)
     
-   
     return () => {
         unsub();
     };
@@ -36,10 +37,10 @@ useEffect(() =>{
 
     return (
         <>
-            {watchedData.length ? <Feed watchedData={watchedData} image={image} at={at}/> : <></>}
+            {watchlistData.length ? <Feed watchlistData={watchlistData} image={image} at={at}/> : <></>}
         </>
     )
 }
 
-export default ProfileFeed
+export default WatchlistFeed
 

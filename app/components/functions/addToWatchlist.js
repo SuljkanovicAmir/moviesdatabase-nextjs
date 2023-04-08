@@ -1,18 +1,21 @@
 
-import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { addDoc, getDocs, query, collection, where, doc, updateDoc } from "firebase/firestore";
 import { db } from '../../firebase/index'
 
 async function addToWatchlist({userID, userToWatch, userAt, userName, movieID}) {
   
-    const mediaRef = collection(db, 'media');
+    const mediaRef = collection(db, 'watchlist');
     const userRef = doc(db, 'users', userID);
 
-    console.log(userID, userToWatch, userAt, userName)
+    const querySnapshot = await getDocs(query(mediaRef, where('movieID', '==', movieID), where('movieID', '==', movieID)));
+    if (!querySnapshot.empty) {
+        console.log('Movie already added!');
+        return;
+    }
+
 
     addDoc(mediaRef, {
         name: userName,
-        rating: '5',
-        review: 'great',
         at: userAt,
         userID: userID,
         movieID: movieID

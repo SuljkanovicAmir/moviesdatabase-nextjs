@@ -11,24 +11,31 @@ const Content = dynamic(() => import("./Content"), {
 
 function Feed(props) {
     
-  const { watchedData, image, at} = props;
+  const { watchedData, watchlistData, image, at } = props;
 
-  console.log(watchedData)
-
+  if (watchedData) {
     const watchedContent = watchedData.map((media) => {
-        return <Content key={media.id} rating={media.rating} at={at} image={image}movieID={media.movieID} />;
+      return <Content key={media.id} rating={media.rating} at={at} image={image} movieID={media.movieID} watchedData={watchedData} />;
     });
-
-  
-    return ( 
-    <div className='feed'>
-        <div className="profile-watched-content-div"> 
-          <div className="profile-watched-list"> 
-            {watchedContent}
+    return (
+      <div className="profile-watched-content-div">
+        <div className="profile-watched-list">{watchedContent}</div>
+      </div>
+    );
+  } else if (watchlistData) {
+    const watchlistContent = watchlistData.map((media) => {
+      return <Content key={media.id} image={image} movieID={media.movieID} watchlistData={watchlistData} />;
+    });
+    return <>
+          <div className="movie-list-div"> 
+            <div className="movie-list"> 
+              {watchlistContent}
+            </div>
           </div>
-        </div>
-    </div>
-   )
+          </>
+  } else {
+    return <div></div>;
+  }
 }
 
 export default Feed
