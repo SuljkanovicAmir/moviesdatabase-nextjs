@@ -5,12 +5,8 @@ import { db } from "../firebase/index";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import dynamic from 'next/dynamic';
 import Loading from './Loading';
+import Feed from './reusables/Feed';
 
-
-const Feed = dynamic(() => import('./reusables/Feed'), {
-    loading: () => <Loading />,
-    ssr: false,
-  });
 
 
 

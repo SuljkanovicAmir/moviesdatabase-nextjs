@@ -10,13 +10,10 @@ import Link from "next/link";
 import Editor from "../../components/reusables/Edtior";
 import Loading from "@/app/components/Loading";
 import dynamic from "next/dynamic";
+import ProfileFeed from "@/app/components/ProfileFeed";
 
 
 
-const ProfileFeed = dynamic(() => import("@/app/components/ProfileFeed"), {
-  loading: () => <Loading />,
-  ssr: false,
-});
 
 
 export default function Profile({ userProfile, profileID }) {

@@ -4,16 +4,8 @@ import React, {useState, useEffect, useContext} from 'react'
 import { UserContext } from '@/app/context/UserContext';
 import dynamic from 'next/dynamic';
 import Loading from '../../components/Loading';
-
-const WatchlistContent = dynamic(() => import('../WatchlistContent'), {
-    loading: () => <Loading />,
-    ssr: false,
-  });
-
-  const WatchedContent = dynamic(() => import("./WatchedContent"), {
-    loading: () => <Loading />,
-    ssr: false,
-  });
+import WatchlistContent from '../WatchlistContent';
+import WatchedContent from '../WatchedContent'
 
 
 function Feed(props) {
