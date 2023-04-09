@@ -11,15 +11,17 @@ import Editor from "../../components/reusables/Edtior";
 import Loading from "@/app/components/Loading";
 import dynamic from "next/dynamic";
 
-const WatchedFeed = dynamic(() => import("@/app/components/WatchedFeed"), {
+
+const WatchedFeed = dynamic(() => import("../WatchedFeed"), {
   loading: () => <Loading />,
   ssr: false,
 });
 
-const WatchlistFeed = dynamic(() => import("@/app/components/WatchlistFeed"), {
+const WatchlistFeed = dynamic(() => import("../WatchlistFeed"), {
   loading: () => <Loading />,
   ssr: false,
 });
+
 
 export default function Profile({ userProfile, profileID }) {
   const {
