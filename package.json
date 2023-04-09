@@ -19,6 +19,7 @@
     "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.29.5-appdir.0"
+    "@netlify/plugin-nextjs": "^4.29.5-appdir.0",
+    "dotenv-webpack": "^8.0.1"
   }
 }
