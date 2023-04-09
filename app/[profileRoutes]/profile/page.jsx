@@ -3,10 +3,13 @@
 import { useState, useEffect, useContext } from "react";
 import ProfileImg from "../../../public/blank.png";
 import { UserContext } from "../../context/UserContext";
+import Image from "next/image";
 import { doc, onSnapshot, collection } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 import Link from "next/link";
 import Editor from "../../components/reusables/Edtior";
+import ProfileFeed from "./ProfileFeed";
+
 
 
 
@@ -160,7 +163,12 @@ export default function Profile({ userProfile, profileID }) {
             </div>
           </div>
           <div>
-          hi
+            <ProfileFeed   
+              image={profileData.image}
+              at={profileData.at}
+              profileID={profileID}
+              activeTab={activeTab}
+              />
       
           </div>
         </div>
