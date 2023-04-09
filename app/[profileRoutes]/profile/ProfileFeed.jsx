@@ -1,11 +1,11 @@
 "use client"
 
 import React, {useEffect, useState} from 'react'
-import { db } from "../firebase/index";
+import { db } from "../../firebase/index";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import dynamic from 'next/dynamic';
-import Loading from './Loading';
-import Feed from './reusables/Feed';
+import Loading from '../../components/Loading';
+import Feed from './Feed';
 
 
 
