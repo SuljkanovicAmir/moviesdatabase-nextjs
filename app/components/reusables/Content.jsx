@@ -30,7 +30,6 @@ export default function Content ({movieID, image, at, rating, watchlistData, wat
 
     useEffect(() => {
         async function getContent() {
-          console.log(movieID)
           const data = await fetchContent(movieID);
           setContent(data);
         }

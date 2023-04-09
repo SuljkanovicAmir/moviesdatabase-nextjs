@@ -4,6 +4,7 @@ import AddIcon from '../../public/add.png'
 import Image from 'next/image';
 import { UserContext } from '../context/UserContext';
 
+
 export default function AddToListButton({movieID}) {
   const {userName, userAt, userID, userToWatch, userWatched} = useContext(UserContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

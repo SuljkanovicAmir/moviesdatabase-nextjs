@@ -3,7 +3,11 @@
 import React, {useEffect, useState} from 'react'
 import { db } from "../firebase/index";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
-import Feed from './Feed';
+
+const Feed = dynamic(() => import('./reusables/Feed'), {
+    loading: () => <Loading />,
+    ssr: false,
+  });
 
 
 function WatchedFeed(props) {
