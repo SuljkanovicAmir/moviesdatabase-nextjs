@@ -11,17 +11,12 @@ import Editor from "../../components/reusables/Edtior";
 import Loading from "@/app/components/Loading";
 import dynamic from "next/dynamic";
 
-const WatchedFeed = dynamic(() => import("@/app/components/WatchedFeed"), {
+
+
+const ProfileFeed = dynamic(() => import("@/app/components/ProfileFeed"), {
   loading: () => <Loading />,
   ssr: false,
 });
-
-
-const WatchlistFeed = dynamic(() => import("@/app/components/WatchlistFeed"), {
-  loading: () => <Loading />,
-  ssr: false,
-});
-
 
 
 export default function Profile({ userProfile, profileID }) {
@@ -173,20 +168,13 @@ export default function Profile({ userProfile, profileID }) {
             </div>
           </div>
           <div>
-            {activeTab === "watched" && (
-              <WatchedFeed
-                image={profileData.image}
-                at={profileData.at}
-                profileID={profileID}
+            <ProfileFeed   
+            image={profileData.image}
+              at={profileData.at}
+              profileID={profileID}
+              activeTab={activeTab}
               />
-            )}
-            {activeTab === "watchlist" && (
-              <WatchlistFeed
-                image={profileData.image}
-                at={profileData.at}
-                profileID={profileID}
-              />
-            )}
+      
           </div>
         </div>
       </div>
