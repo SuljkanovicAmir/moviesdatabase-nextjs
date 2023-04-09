@@ -30,19 +30,3 @@ export default addToWatchlist
 
 
 
-    /*
-    const newList = [...userWatchList, mediaID];
-
-    const docSnap = await getDoc(mediaRef);
-    const data = docSnap.data();
-
-    console.log(data)
-    let toWatch = docSnap.data().goingToWatch;
-
-    const newToWatch = [...(toWatch || []), userID]
-    
-    updateDoc(mediaRef, {toWatch: newToWatch})
-    
-    updateDoc(userRef, {toWatch: newList})
-
-    */

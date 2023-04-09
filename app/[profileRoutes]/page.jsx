@@ -5,13 +5,8 @@ import { doc, onSnapshot, query, where, collection } from "firebase/firestore";
 import { UserContext } from "../context/UserContext";
 import Loading from "../components/Loading";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
+import Profile from "./profile/page";
 
-
-const Profile = dynamic(() => import("./profile/page"), {
-  loading: () => <Loading />,
-  ssr: false,
-});
 
 
 
