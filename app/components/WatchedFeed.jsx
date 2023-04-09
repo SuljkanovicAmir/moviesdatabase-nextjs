@@ -3,8 +3,11 @@
 import React, {useEffect, useState} from 'react'
 import { db } from "../firebase/index";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import Loading from './Loading';
+import dynamic from 'next/dynamic';
 
-const Feed = dynamic(() => import('./reusables/Feed'), {
+
+const Feed = dynamic(() => import('./reusables/FeedWatched'), {
     loading: () => <Loading />,
     ssr: false,
   });

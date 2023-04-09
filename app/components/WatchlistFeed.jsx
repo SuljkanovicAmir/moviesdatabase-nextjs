@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import Loading from './Loading';
 
 
-const Feed = dynamic(() => import('./reusables/Feed'), {
+const Feed = dynamic(() => import('./reusables/FeedWatchlist'), {
     loading: () => <Loading />,
     ssr: false,
   });

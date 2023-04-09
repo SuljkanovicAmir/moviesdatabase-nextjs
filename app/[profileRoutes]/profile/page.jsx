@@ -11,7 +11,7 @@ import Editor from "../../components/reusables/Edtior";
 import Loading from "@/app/components/Loading";
 import dynamic from "next/dynamic";
 
-const WatchedFeed = dynamic(() => import("@/app/components/WatchlistFeed"), {
+const WatchedFeed = dynamic(() => import("@/app/components/WatchedFeed"), {
   loading: () => <Loading />,
   ssr: false,
 });
