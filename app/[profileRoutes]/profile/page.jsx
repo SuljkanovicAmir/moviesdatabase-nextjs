@@ -10,8 +10,8 @@ import Link from "next/link";
 import Editor from "../../components/reusables/Edtior";
 import Loading from "@/app/components/Loading";
 import dynamic from "next/dynamic";
-import WatchedFeed from "./WatchedFeed";
-import WatchlistFeed from "./WatchlistFeed";
+import ProfileFeed from "@/app/components/ProfileFeed";
+
 
 
 
@@ -165,20 +165,13 @@ export default function Profile({ userProfile, profileID }) {
             </div>
           </div>
           <div>
-            {activeTab === "watched" && (
-              <WatchedFeed
-                image={profileData.image}
-                at={profileData.at}
-                profileID={profileID}
+            <ProfileFeed   
+            image={profileData.image}
+              at={profileData.at}
+              profileID={profileID}
+              activeTab={activeTab}
               />
-            )}
-            {activeTab === "watchlist" && (
-              <WatchlistFeed
-                image={profileData.image}
-                at={profileData.at}
-                profileID={profileID}
-              />
-            )}
+      
           </div>
         </div>
       </div>
