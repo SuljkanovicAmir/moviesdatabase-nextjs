@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext';
 import Close from '../../public/close.svg'
 import Image from 'next/image';
 
-function AddToWatchedForm({isActiveForm, setFormActive, movieID}) {
+function AddToWatchedForm({isActiveForm, setFormActive, movieID, setShowToast}) {
 
     const {userName, userAt, userID, userWatched} = useContext(UserContext);
 
