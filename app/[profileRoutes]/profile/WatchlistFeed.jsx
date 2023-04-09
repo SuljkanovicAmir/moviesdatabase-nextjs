@@ -2,7 +2,7 @@
 
 import React, {useEffect, useState} from 'react'
 import { db } from "../../firebase/index";
-import Feed from '../../components/reusables/Feed';
+import Feed from './Feed';
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 
 

@@ -2,7 +2,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { UserContext } from '@/app/context/UserContext';
 import dynamic from 'next/dynamic';
-import Loading from '../Loading';
+import Loading from '../../components/Loading';
 
 const Content = dynamic(() => import("./Content"), {
     loading: () => <Loading />,
