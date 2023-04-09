@@ -5,7 +5,6 @@ import { db } from "../../firebase/index";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import dynamic from 'next/dynamic';
 import Loading from '../../components/Loading';
-import Feed from './Feed';
 
 
 
@@ -61,9 +60,9 @@ useEffect(() =>{
 
 
     return (
-        <>
-            <Feed watchlistData={watchlistData} watchedData={watchedData} image={image} activeTab={activeTab} at={at}/>
-        </>
+       <div>
+        hi
+       </div>
     )
 }
 
