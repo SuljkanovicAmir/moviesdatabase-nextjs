@@ -1,10 +1,10 @@
 "use client"
 
-import React, {useEffect, useState} from 'react'
-import { db } from "../../firebase/index";
+import React, {useEffect, useState, useContext} from 'react'
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import dynamic from 'next/dynamic';
 import Loading from '../../components/Loading';
+import { UserContext } from '@/app/context/UserContext';
 
 
 
@@ -16,6 +16,7 @@ function ProfileFeed(props) {
     const [watchedData, setWatchedData] = useState([]);
     const watchedRef = collection(db, 'watched');
     const watchlistRef = collection(db, 'watchlist');
+    const { db } = useContext(UserContext);
 
 
 useEffect(() =>{
