@@ -1,10 +1,17 @@
 "use client"
 
 import React, {useEffect, useState} from 'react'
-import { db } from "../../firebase/index";
-import Feed from './Feed';
+import { db } from "../firebase/index";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import Feed from './reusables/Feed';
+import dynamic from 'next/dynamic';
+import Loading from './Loading';
 
+
+const Feeds = dynamic(() => import('./reusables/Feed'), {
+    loading: () => <Loading />,
+    ssr: false,
+  });
 
 function WatchlistFeed(props) {
 

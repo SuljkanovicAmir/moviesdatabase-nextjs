@@ -10,9 +10,17 @@ import Link from "next/link";
 import Editor from "../../components/reusables/Edtior";
 import Loading from "@/app/components/Loading";
 import dynamic from "next/dynamic";
-import WatchedFeed from "./WatchedFeed";
-import WatchlistFeed from "./WatchlistFeed";
 
+const WatchedFeed = dynamic(() => import("@/app/components/WatchlistFeed"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+
+
+const WatchlistFeed = dynamic(() => import("@/app/components/WatchlistFeed"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
 
 
 
