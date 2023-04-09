@@ -4,7 +4,6 @@ import React, {useState, useEffect, useContext} from 'react'
 import { UserContext } from '@/app/context/UserContext';
 import dynamic from 'next/dynamic';
 import Loading from '../../components/Loading';
-import WatchlistContent from '../WatchlistContent';
 import WatchedContent from '../WatchedContent'
 
 
@@ -23,7 +22,7 @@ function Feed(props) {
     );
     } else if (activeTab === 'watchlist') {
     const watchlistContent = watchlistData.map((media) => {
-      return  <WatchlistContent key={media.id} image={image} movieID={media.movieID} watchlistData={watchlistData} />;
+      return  <><div className="hi">hi</div></>;
     });
     return <>
           <div className="movie-list-div"> 
