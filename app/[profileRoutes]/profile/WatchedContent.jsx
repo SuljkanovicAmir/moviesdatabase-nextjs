@@ -15,7 +15,7 @@ async function fetchContent(movieID) {
   }
  
 
-export default function Content ({movieID, image, at, rating}) {
+export default function WatchedContent ({movieID, image, at, rating}) {
   const imagePath = "https://image.tmdb.org/t/p/w200";
   const [content, setContent] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
