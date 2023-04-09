@@ -8,9 +8,7 @@ import { doc, onSnapshot, collection } from "firebase/firestore";
 import { ref, getDownloadURL } from "firebase/storage";
 import Link from "next/link";
 import Editor from "../../components/reusables/Edtior";
-import Loading from "@/app/components/Loading";
-import dynamic from "next/dynamic";
-import ProfileFeed from "./ProfileFeed";
+
 
 
 
@@ -165,12 +163,7 @@ export default function Profile({ userProfile, profileID }) {
             </div>
           </div>
           <div>
-            <ProfileFeed   
-            image={profileData.image}
-              at={profileData.at}
-              profileID={profileID}
-              activeTab={activeTab}
-              />
+          hi
       
           </div>
         </div>
