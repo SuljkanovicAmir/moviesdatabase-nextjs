@@ -13,21 +13,21 @@ function Feed(props) {
 
   if (activeTab === 'watched') {
     const watchedContent = watchedData.map((media) => {
-      return <WatchedContent key={media.id} rating={media.rating} at={at} image={image} movieID={media.movieID} watchedData={watchedData} />;
+      return <div></div>;
     });
     return (
       <div className="profile-watched-content-div">
-        <div className="profile-watched-list">{watchedContent}</div>
+        <div className="profile-watched-list"><div></div></div>
       </div>
     );
     } else if (activeTab === 'watchlist') {
     const watchlistContent = watchlistData.map((media) => {
-      return  <><div className="hi">hi</div></>;
+      return  <div></div>;
     });
     return <>
           <div className="movie-list-div"> 
             <div className="movie-list"> 
-              {watchlistContent}
+            <div></div>
             </div>
           </div>
           </>
