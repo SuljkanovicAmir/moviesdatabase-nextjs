@@ -3,11 +3,14 @@ import { useState, useContext } from 'react';
 import AddIcon from '../../public/add.png'
 import Image from 'next/image';
 import { UserContext } from '../context/UserContext';
+import AddToWatchedForm from './AddToWatchedForm';
 
 
 export default function AddToListButton({movieID}) {
   const {userName, userAt, userID, userToWatch, userWatched} = useContext(UserContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isActiveForm, setFormActive] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
 
 
@@ -17,24 +20,16 @@ export default function AddToListButton({movieID}) {
 
   const handleAddToWatchlistClick = (e) => {
     addToWatchlist(e)
-    // TODO: Add logic to add movie/TV show to watchlist
+    setShowToast(true)
+    setTimeout(() => setShowToast(false), 3000);
     setIsDropdownOpen(false);
   }
 
   const handleAddToWatchedClick = (e) => {
-    addToWatched(e)
-    // TODO: Add logic to add movie/TV show to watched list
+    setFormActive(true)
     setIsDropdownOpen(false);
   }
 
-  const addToWatched = (e) => {
-    e.preventDefault();
-      import("./functions/addToWatched.js")
-            .then((addToWatched) =>
-              addToWatched.default({ userName, userAt, userID, userWatched, movieID})
-            )
-            .catch((err) => console.log(err));   
-	};
 
 
   const addToWatchlist = (e) => {
@@ -50,8 +45,9 @@ export default function AddToListButton({movieID}) {
 
   return (
     <div className="dropdown">
+      <div onClick={() => setFormActive(false)} className={isActiveForm ? 'edit-backdrop active' : 'edit-backdrop' }></div>
       <button className="btn" onClick={handleDropdownToggle}>
-        <Image src={AddIcon} alt="add" height={500} width={500} />
+        <Image src={AddIcon} className='add' alt="add" height={500} width={500} />
       </button>
       {isDropdownOpen && (
         <div className="dropdown-menu">
@@ -63,6 +59,8 @@ export default function AddToListButton({movieID}) {
           </button>
         </div>
       )}
+       <AddToWatchedForm showToast={showToast} setShowToast={setShowToast} isActiveForm={isActiveForm} setFormActive={setFormActive} movieID={movieID}/>
+       {showToast && <div className='toast-success'>Added to profile</div>}
     </div>
   );
 }

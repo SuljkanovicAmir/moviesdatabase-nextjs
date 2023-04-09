@@ -563,7 +563,7 @@ header > nav > ul {
 }
 
 
-input[type=number] {
+.filters input[type=number] {
   background: white;
     padding: 4px 8px;
     max-width: 100px;
@@ -1106,7 +1106,7 @@ input[type="file"] {
   border: none;
 }
 
-.dropdown img {
+.dropdown .add {
   filter: invert(1);
   width: 50px;
   height: 50px;
@@ -1118,8 +1118,9 @@ input[type="file"] {
   transform: translateX(-35px);
   display: flex;
   flex-direction: column;
-  background-color: black;
   border-radius: 5px;
+  background: white;
+  padding: 4px;
 }
 
 .dropdown-item {
@@ -1127,7 +1128,17 @@ input[type="file"] {
   color: white;
   border: none;
   padding: 7px 14px;
+  background: white;
+  color: black;
+  font-size: 1.1em;
+  cursor: pointer;
 }
+
+.dropdown-menu :first-child {
+  border-bottom: 1px solid black;
+}
+
+
 
 .watched,
 .watchlist {
@@ -1223,6 +1234,7 @@ input[type="file"] {
 
 .profile-content-info span {
   font-size: 0.9em;
+  word-break: break-word;
 }
 
 
@@ -1236,9 +1248,97 @@ input[type="file"] {
 
 
 
+.form-div {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000d4;
+  backdrop-filter: blur(2px);
+  padding: 50px 20px 30px 20px;
+  justify-content: center;
+}
+
+.form-div.active {
+  display: flex;
+}
+
+.form-div form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  gap: 10px;
+}
+
+.form-div form,
+.form-div label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-div form :first-child {
+  flex-direction: row;
+}
+
+.form-div input[type="number"] {
+  max-width: 70px;
+  padding: 5px 10px;
+  background-color: black;
+  border: 1px solid rgba(255, 255, 255, 0.63);
+  border-radius: 5px;
+}
+
+.form-div textarea {
+  resize: none;
+  height: 200px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.63);
+  border-radius: 5px;
+  background-color: black;
+  word-break: break-all;
+  font-family: '__Poppins_aafbde'
+}
+
+.form-div button {
+  padding: 6px 14px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  max-width: 160px;
+  cursor: pointer;
+  align-self: center;
+}
+
+.form-div .close-icon {
+  position: fixed;
+  top: 4%;
+  left: 4%;
+}
 
 
+.rating {
+  display: flex;
+  gap: 5px;
+}
 
+.toast-success {
+  position: fixed;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  background: green;
+  padding: 6px 12px;
+  border-radius: 5px;
+  width: 220px;
+  text-align: center;
+}
 
 
 
@@ -1423,7 +1523,7 @@ input[type="file"] {
   .filters > div {
     width: 60%;
   }
-  input[type=number],
+  .filters input[type=number],
   select {
     max-width: unset;
     width: 100%;
@@ -1589,12 +1689,16 @@ input[type="file"] {
 
 .dropdown-menu {
   position: absolute;
-  transform: translateX(-35px);
+  transform: translateX(-55px);
   display: flex;
   flex-direction: column;
   border: 1px solid transparent;
 }
 
+.form-div input[type="number"] {
+  max-width: 50px;
+  padding: 4px 8px;
+}
 
   @media screen and (max-width: 340px) {
     .all-movies-tv .movie-grid {

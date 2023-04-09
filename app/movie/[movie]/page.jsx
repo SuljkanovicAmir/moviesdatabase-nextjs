@@ -43,6 +43,7 @@ export default async function MovieDetail ( {params}) {
             </div>
             <MediaCast mediaId={movie} mediaType='movie'/>
             <SimilarMovies params={params} />
+           
         </div>
     );
 }

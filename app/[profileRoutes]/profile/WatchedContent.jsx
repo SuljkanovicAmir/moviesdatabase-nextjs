@@ -15,7 +15,7 @@ async function fetchContent(movieID) {
   }
  
 
-export default function WatchedContent ({movieID, image, at, rating}) {
+export default function WatchedContent ({movieID, image, at, rating, review}) {
   const imagePath = "https://image.tmdb.org/t/p/w200";
   const [content, setContent] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -72,11 +72,10 @@ export default function WatchedContent ({movieID, image, at, rating}) {
         </Link>
         <div className="profile-content-info">
           <span className="vote-average">
-            Rating: <span>{rating}</span>
+            Rating: <span>{rating}/5</span>
           </span>
           <span>
-            Review: The first was so funny but I doubt the second is good. The
-            first was so funny but I doubt the second is good
+            {review}
           </span>
         </div>
       </div>
