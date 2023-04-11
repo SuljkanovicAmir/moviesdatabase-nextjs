@@ -25,14 +25,26 @@ function ProfileFeed(props) {
 useEffect(() =>{
 
     const q = query(watchlistRef,  where("userID", "==", profileID));
-
+  
     const unsub = onSnapshot(q, (querySnapshot) => {
         let tempArray = [];
+        let deletionArray = [];
+    
+
+
+        querySnapshot.docChanges().forEach((change) => {
+            const doc = change.doc;
+            if (change.type === "removed") {
+                deletionArray.push(doc.id);
+            }
+        })
+
         querySnapshot.forEach((doc) => {
             tempArray.push({ ...doc.data(), id: doc.id });
         })
         console.log(watchlistData)
-        setWatchlistData(tempArray);
+
+        setWatchlistData(tempArray.filter((doc) => !deletionArray.includes(doc.id)));
     })
     
     return () => {

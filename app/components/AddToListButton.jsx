@@ -60,7 +60,7 @@ export default function AddToListButton({movieID}) {
         </div>
       )}
        <AddToWatchedForm showToast={showToast} setShowToast={setShowToast} isActiveForm={isActiveForm} setFormActive={setFormActive} movieID={movieID}/>
-       {showToast && <div className='toast-success'>Added to profile</div>}
+      
     </div>
   );
 }

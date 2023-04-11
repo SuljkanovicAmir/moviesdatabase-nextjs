@@ -50,7 +50,7 @@ function AddToWatchedForm({isActiveForm, setFormActive, movieID, setShowToast}) 
     return (
     <div className={isActiveForm ? 'form-div active' : 'form-div' }>
        <Image src={Close} onClick={() => setFormActive(false)} className="close-icon" alt="close" width={50} height={50} />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={e => handleSubmit(e)}>
         <label>
           Rating:
           <div className='rating'>

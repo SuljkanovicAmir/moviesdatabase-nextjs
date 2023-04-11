@@ -375,7 +375,7 @@ header > nav > ul {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(180deg, rgb(38 38 38 / 5%) 60%, rgb(18 18 18 / 37%) 79%, rgb(0 0 0 / 96%) 91%);
+  background: linear-gradient(180deg, rgb(38 38 38 / 5%) 60%, rgb(0 0 0 / 65%) 79%, rgb(0 0 0) 91%);
   pointer-events: none;
 }
 
@@ -1165,7 +1165,6 @@ input[type="file"] {
   height: 24px;
   width: 24px;
   border-radius: 100px;
-  border: 1px solid #ffffff29;
 }
 
 .profile-content h1 {
@@ -1176,6 +1175,7 @@ input[type="file"] {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  position: relative;
 }
 
 .profile-content-header > div {
@@ -1208,7 +1208,7 @@ input[type="file"] {
   overflow: auto;
   display: flex;
   gap: 15px;
-  padding: 15px 20px;
+  padding: 30px 20px;
   flex-direction: column;
 }
 
@@ -1339,6 +1339,38 @@ input[type="file"] {
   width: 220px;
   text-align: center;
 }
+
+
+.dots {
+  height: 18px;
+  margin-left: 7px;
+  position: relative;
+}
+
+.dots img {
+  width: 18px;
+  height: auto;
+}
+
+.post-dropdown.active {
+  transform: translateY(-36px) translateX(20px);
+}
+
+.post-dropdown {
+  position: absolute;
+  width: 89px;
+  background: #ffffffe6;
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: black;
+  font-size: 0.8em;
+  text-align: center;
+  transform: translateY(-36px) translateX(200%);
+  transition: 0.6s ease-in-out;
+}
+
+
+
 
 
 

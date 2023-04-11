@@ -1,24 +1,34 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import Loading from "../../components/Loading";
-
-
+import { UserContext } from "@/app/context/UserContext";
+import DotsIcon from "../../../public/dots.svg";
 
 async function fetchContent(movieID) {
-    const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-        { next: { revalidate: 3600 } }
-      );
-      return await response.json();
-  }
- 
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    { next: { revalidate: 3600 } }
+  );
+  return await response.json();
+}
 
-export default function WatchedContent ({movieID, image, at, rating, review}) {
+export default function WatchedContent({
+  movieID,
+  image,
+  at,
+  rating,
+  review,
+  mediaID,
+}) 
+
+{
+  const { userID, userWatched } = useContext(UserContext);
   const imagePath = "https://image.tmdb.org/t/p/w200";
   const [content, setContent] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
 
   const imageLoad = () => {
     setImageLoaded(true);
@@ -32,6 +42,24 @@ export default function WatchedContent ({movieID, image, at, rating, review}) {
 
     getContent();
   }, [movieID]);
+
+  const deleteContent = (e) => {
+    e.preventDefault();
+    if (userID) {
+      import("../../components/functions/deleteContent.js").then(
+        (deleteContent) => {
+          deleteContent.default(mediaID, userWatched, userID);
+        }
+      );
+    }
+  };
+
+  const toggleDropdown = (e) => {
+    e.stopPropagation();
+    if (userID) {
+      setDropdown(!dropdown);
+    }
+  };
 
   if (!content) {
     return <Loading />;
@@ -52,7 +80,18 @@ export default function WatchedContent ({movieID, image, at, rating, review}) {
               style={{ backgroundImage: `url(${image})` }}
             ></div>
           </div>
+          <div className="dots" onClick={(e) => toggleDropdown(e)}>
+            <Image src={DotsIcon} height={24} width={24} alt="dots" />
         </div>
+        <div
+              onClick={(e) => deleteContent(e)}
+              className={
+                dropdown ? "post-dropdown active" : "post-dropdown"
+              }
+            >
+              Delete post
+            </div>
+          </div>
       </div>
       <div className="profile-content-main">
         <Link
@@ -74,9 +113,7 @@ export default function WatchedContent ({movieID, image, at, rating, review}) {
           <span className="vote-average">
             Rating: <span>{rating}/5</span>
           </span>
-          <span>
-            {review}
-          </span>
+          <span>{review}</span>
         </div>
       </div>
     </div>

@@ -25,6 +25,11 @@ const TopRated = dynamic(() => import("./components/TRatedMovies"), {
   ssr: false,
 });
 
+const OnAirTV = dynamic(() => import("./components/OnAirTV"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+
 const PopularMovies = dynamic(() => import("./components/PopularMovies"), {
   loading: () => <Loading />,
   ssr: false,
@@ -60,6 +65,7 @@ export default async function Home() {
       )}
       <TopRated />
       <TopRatedTV />
+      <OnAirTV />
     </main>
   );
 }
