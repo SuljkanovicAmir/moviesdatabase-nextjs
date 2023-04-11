@@ -1202,14 +1202,15 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   padding: 10px 0px 10px 0px;
+  position: relative;
 }
 
 .profile-watched-list {
-  overflow: auto;
   display: flex;
   gap: 15px;
   padding: 30px 20px;
   flex-direction: column;
+  overflow: hidden;
 }
 
 
@@ -1730,6 +1731,19 @@ input[type="file"] {
 .form-div input[type="number"] {
   max-width: 50px;
   padding: 4px 8px;
+}
+
+
+.profile-main .movie-list {
+  gap: unset;
+}
+
+.watchlist.poster {
+  height: 190px;
+}
+
+#watchlist-a {
+  min-width: 120px !important; 
 }
 
   @media screen and (max-width: 340px) {

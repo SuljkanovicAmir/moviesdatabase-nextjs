@@ -16,7 +16,7 @@ function Feed(props) {
 
   if (activeTab === 'watched') {
     const watchedContent = watchedData.map((media) => {
-      return <WatchedContent key={media.id} mediaID={media.id} rating={media.rating} review={media.review} at={at} image={image} movieID={media.movieID} watchedData={watchedData} />;
+      return <WatchedContent key={media.id} mediaID={media.id} posterID={media.userID} rating={media.rating} review={media.review} at={at} image={image} movieID={media.movieID} watchedData={watchedData} />;
     });
     return (
       <div className="profile-watched-content-div">

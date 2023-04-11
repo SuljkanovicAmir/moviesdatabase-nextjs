@@ -35,8 +35,8 @@ export default function WatchlistContent ({movieID}) {
         }
 
         return (
-          <Link key={content.id}  href={`/movie/${content.id}`}>  
-            <Image className="poster"src={imagePath + content.poster_path} priority alt={content.title} width={500} height={500}/>
+          <Link key={content.id} id="watchlist-a"  href={`/movie/${content.id}`}>  
+            <Image className="watchlist poster"src={imagePath + content.poster_path} priority alt={content.title} width={500} height={500}/>
           </Link>
           )
 }

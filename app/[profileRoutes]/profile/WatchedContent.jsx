@@ -21,6 +21,7 @@ export default function WatchedContent({
   rating,
   review,
   mediaID,
+  posterID
 }) 
 
 {
@@ -29,11 +30,16 @@ export default function WatchedContent({
   const [content, setContent] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const [userContent, setUserContent] = useState(false);
 
   const imageLoad = () => {
     setImageLoaded(true);
   };
 
+  useEffect(() => {
+    userID === posterID && setUserContent(true);
+}, [userID, posterID]);
+console.log(posterID)
   useEffect(() => {
     async function getContent() {
       const data = await fetchContent(movieID);
@@ -53,7 +59,7 @@ export default function WatchedContent({
       );
     }
   };
-
+  console.log(userID)
   const toggleDropdown = (e) => {
     e.stopPropagation();
     if (userID) {
@@ -83,6 +89,7 @@ export default function WatchedContent({
           <div className="dots" onClick={(e) => toggleDropdown(e)}>
             <Image src={DotsIcon} height={24} width={24} alt="dots" />
         </div>
+        {userContent ? (
         <div
               onClick={(e) => deleteContent(e)}
               className={
@@ -91,7 +98,13 @@ export default function WatchedContent({
             >
               Delete post
             </div>
+             ) : (
+              ""
+            )
+          }
           </div>
+         
+  
       </div>
       <div className="profile-content-main">
         <Link
