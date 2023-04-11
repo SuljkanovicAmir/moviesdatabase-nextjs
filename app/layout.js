@@ -12,11 +12,6 @@ const poppins = Poppins({
   subsets: ['latin'],
 })
 
-export const metadata = {
-  title: 'Cineboxd',
-  description: 'Personal Project',
-}
-
 export default function RootLayout({ children }) {
 
   return (
