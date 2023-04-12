@@ -3,12 +3,15 @@ import { addDoc, getDocs, query, collection, where, doc, updateDoc } from "fireb
 import { db } from '../../firebase/index'
 import { toast } from 'react-toastify';
 
-async function addToWatchlist({userID, userToWatch, userAt, userName, movieID}) {
+async function addToWatchlist({userID, userToWatch, userAt, userName, movieID, title}) {
   
     const mediaRef = collection(db, 'watchlist');
     const userRef = doc(db, 'users', userID);
+    const userWRef = collection(db, "users");
 
-    const querySnapshot = await getDocs(query(mediaRef, where('movieID', '==', movieID), where('movieID', '==', movieID)));
+
+/*
+    const querySnapshot = await getDocs(query(userWRef, where("goingToWatch", "array-contains", movieID)));
     if (!querySnapshot.empty) {
         toast.error('Movie already added!', {
             position: "top-center",
@@ -22,13 +25,15 @@ async function addToWatchlist({userID, userToWatch, userAt, userName, movieID}) 
             });
         return;
     }
-
+*/
 
     addDoc(mediaRef, {
         name: userName,
         at: userAt,
         userID: userID,
-        movieID: movieID
+        movieID: movieID,
+        title: title || '',
+        timeStamp: new Date(),
     }).then((newMedia) => {
         updateDoc(userRef, {
             goingToWatch: [...userToWatch, newMedia.id] 

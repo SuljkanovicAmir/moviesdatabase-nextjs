@@ -15,9 +15,9 @@ import {
     const userRef = doc(db, "users", userID);
   
     const newList = userContent.filter((content) => content !== deletedContent);
-    await updateDoc(userRef, { watched: newList });
+    await updateDoc(userRef, { goingToWatch: newList });
   
-    await deleteDoc(doc(db, "watched", deletedContent));
+    await deleteDoc(doc(db, "watchlist", deletedContent));
   
 }
 

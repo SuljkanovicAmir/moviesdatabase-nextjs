@@ -6,7 +6,7 @@ import { UserContext } from '../context/UserContext';
 import AddToWatchedForm from './AddToWatchedForm';
 
 
-export default function AddToListButton({movieID}) {
+export default function AddToListButton({movieID, title, name}) {
   const {userName, userAt, userID, userToWatch, userWatched} = useContext(UserContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isActiveForm, setFormActive] = useState(false);
@@ -36,7 +36,7 @@ export default function AddToListButton({movieID}) {
     e.preventDefault();
       import("./functions/addToWatchlist.js")
             .then((addToWatchlist) =>
-            addToWatchlist.default({ userName, userAt, userID, userToWatch, movieID})
+            addToWatchlist.default({ userName, userAt, userID, userToWatch, movieID, title})
             )
             .catch((err) => console.log(err));   
 	};
@@ -59,7 +59,7 @@ export default function AddToListButton({movieID}) {
           </button>
         </div>
       )}
-       <AddToWatchedForm showToast={showToast} setShowToast={setShowToast} isActiveForm={isActiveForm} setFormActive={setFormActive} movieID={movieID}/>
+       <AddToWatchedForm showToast={showToast} setShowToast={setShowToast} isActiveForm={isActiveForm} setFormActive={setFormActive} title={title} movieID={movieID}/>
       
     </div>
   );

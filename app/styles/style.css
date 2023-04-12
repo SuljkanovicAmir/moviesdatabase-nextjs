@@ -1372,12 +1372,32 @@ input[type="file"] {
 
 
 
+.watchlist-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.555);
+  border-radius: 5px;
+}
+
+#watchlist-a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 
+.delete-icon {
+  filter: invert(1);
+}
 
 
-
-
+.profile-main .movie-list-div {
+  height: 420px;
+}
 
 
 
@@ -1738,12 +1758,25 @@ input[type="file"] {
   gap: unset;
 }
 
-.watchlist.poster {
-  height: 190px;
+
+
+.watchlist-div {
+  gap: 5px;
+  padding: 5px;
 }
 
 #watchlist-a {
   min-width: 120px !important; 
+}
+
+.watchlist.poster {
+  height: 190px;
+}
+
+.delete-icon {
+  filter: invert(1);
+  height: 20px;
+  width: auto;
 }
 
   @media screen and (max-width: 340px) {

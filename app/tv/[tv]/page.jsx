@@ -2,6 +2,7 @@ import Loading from "@/app/components/Loading";
 import Image from "next/image"
 import dynamic from 'next/dynamic'
 import MediaCast from "@/app/movie/[movie]/mediaCast/page";
+import AddToListButton from "@/app/components/AddToListButton";
 
 
 const SimilarTV = dynamic(() => import("./similarTV/page"), {
@@ -20,6 +21,7 @@ export default async function TvDetails ( {params}) {
             <div className="details">
                 <div className="backdrop-div">
                     <div className="backdrop"></div>
+                    <AddToListButton movieID={tv} />
                     <Image className="detailed-poster" quality={100} priority src={imagePath + res.backdrop_path} alt={res.name} width={1000} height={1000}/>
                 </div>
                 <div className="details-info">

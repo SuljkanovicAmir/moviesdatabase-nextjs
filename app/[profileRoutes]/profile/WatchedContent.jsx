@@ -6,9 +6,9 @@ import Loading from "../../components/Loading";
 import { UserContext } from "@/app/context/UserContext";
 import DotsIcon from "../../../public/dots.svg";
 
-async function fetchContent(movieID) {
+async function fetchContent(media, movieID) {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    `https://api.themoviedb.org/3/${media}/${movieID}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
     { next: { revalidate: 3600 } }
   );
   return await response.json();
@@ -21,7 +21,8 @@ export default function WatchedContent({
   rating,
   review,
   mediaID,
-  posterID
+  posterID,
+  title
 }) 
 
 {
@@ -39,10 +40,12 @@ export default function WatchedContent({
   useEffect(() => {
     userID === posterID && setUserContent(true);
 }, [userID, posterID]);
-console.log(posterID)
-  useEffect(() => {
+
+
+useEffect(() => {
     async function getContent() {
-      const data = await fetchContent(movieID);
+      let media = title !== '' ? 'movie' : 'tv';
+      const data = await fetchContent(media, movieID);
       setContent(data);
     }
 
@@ -59,7 +62,7 @@ console.log(posterID)
       );
     }
   };
-  console.log(userID)
+
   const toggleDropdown = (e) => {
     e.stopPropagation();
     if (userID) {
@@ -71,10 +74,11 @@ console.log(posterID)
     return <Loading />;
   }
 
+
   return (
     <div className="profile-content">
       <div className="profile-content-header">
-        <h1>{content.title}</h1>
+        <h1>{content.title || content.name}</h1>
         <div>
           <p className="user-at">@{at}</p>
           <div

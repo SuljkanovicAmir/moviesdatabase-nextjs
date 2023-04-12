@@ -1,28 +1,31 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from "@/app/context/UserContext";
 import Loading from "../../components/Loading";
+import TrashIcon from '../../../public/trash.svg'
 
 
-
-async function fetchContent(movieID) {
+async function fetchContent(media, movieID) {
     const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieID}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+        `https://api.themoviedb.org/3/${media}/${movieID}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
         { next: { revalidate: 3600 } }
       );
       return await response.json();
   }
  
 
-export default function WatchlistContent ({movieID}) {
+export default function WatchlistContent ({movieID, title, mediaID}) {
 
     const imagePath = "https://image.tmdb.org/t/p/w200";
     const [content, setContent] = useState(null);
+    const { userID, userToWatch } = useContext(UserContext);
 
     useEffect(() => {
         async function getContent() {
-          const data = await fetchContent(movieID);
+          let media = title !== '' ? 'movie' : 'tv';
+          const data = await fetchContent(media, movieID);
           setContent(data);
         }
     
@@ -30,13 +33,27 @@ export default function WatchlistContent ({movieID}) {
       }, [movieID]);
       
 
-        if(!content) {
+      const deleteWatchlistContent = (e) => {
+        e.preventDefault();
+        if (userID) {
+          import("../../components/functions/deleteWatchlistContent").then(
+            (deleteWatchlistContent) => {
+              deleteWatchlistContent.default(mediaID, userToWatch, userID);
+            }
+          );
+        }
+      };
+      
+      if(!content) {
             return <Loading />
         }
 
         return (
-          <Link key={content.id} id="watchlist-a"  href={`/movie/${content.id}`}>  
-            <Image className="watchlist poster"src={imagePath + content.poster_path} priority alt={content.title} width={500} height={500}/>
-          </Link>
+          <div className="watchlist-div">
+            <Link key={content.id} id="watchlist-a"  href={`/movie/${content.id}`}>  
+              <Image className="watchlist poster"src={imagePath + content.poster_path} priority alt={content.title} width={500} height={500}/>     
+            </Link>
+            <Image src={TrashIcon} onClick={(e) => deleteWatchlistContent(e)} className="delete-icon" alt="delete" height={24} width={24}/>
+          </div>
           )
 }

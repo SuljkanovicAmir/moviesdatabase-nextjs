@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext';
 import Close from '../../public/close.svg'
 import Image from 'next/image';
 
-function AddToWatchedForm({isActiveForm, setFormActive, movieID, setShowToast}) {
+function AddToWatchedForm({isActiveForm, setFormActive, movieID, setShowToast, title}) {
 
     const {userName, userAt, userID, userWatched} = useContext(UserContext);
 
@@ -15,9 +15,8 @@ function AddToWatchedForm({isActiveForm, setFormActive, movieID, setShowToast}) 
 
     const handleRating = (event) => {
       const value = parseFloat(event.target.value);
-      if (value >= 0 && value <= 5) {
-        setRatingInput(value);
-      }
+      setRatingInput(value);
+    
     };
 
     const handleReview = (event) => {
@@ -31,7 +30,7 @@ function AddToWatchedForm({isActiveForm, setFormActive, movieID, setShowToast}) 
         e.preventDefault();
           import("./functions/addToWatched.js")
                 .then((addToWatched) =>
-                  addToWatched.default({ userName, userAt, userID, userWatched, movieID, ratingInput, reviewInput})
+                  addToWatched.default({ userName, userAt, userID, userWatched, movieID, ratingInput, title, reviewInput})
                 )
                 .catch((err) => console.log(err));   
         };

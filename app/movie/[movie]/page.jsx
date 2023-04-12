@@ -22,7 +22,7 @@ export default async function MovieDetail ( {params}) {
             <div className="details">
                 <div className="backdrop-div">
                     <div className="backdrop"></div>
-                    <AddToListButton movieID={movie} />
+                    <AddToListButton movieID={movie} title={res.title}/>
                     <Image className="detailed-poster" priority src={imagePath + res.backdrop_path} alt={res.title} width={1000} height={1000}/>
                 </div>
                 <div className="details-info">

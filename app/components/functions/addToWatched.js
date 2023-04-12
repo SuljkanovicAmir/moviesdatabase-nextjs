@@ -4,11 +4,13 @@ import { addDoc, getDocs, query, collection, where, doc, updateDoc } from "fireb
 import { db } from '../../firebase/index'
 import { toast } from 'react-toastify';
 
-async function addToWatched({userID, userWatched, userAt, userName, movieID, ratingInput, reviewInput}) {
+async function addToWatched({userID, userWatched, userAt, userName, movieID, ratingInput, reviewInput, title}) {
   
     const mediaRef = collection(db, 'watched');
     const userRef = doc(db, 'users', userID);
 
+
+    /*
     const querySnapshot = await getDocs(query(mediaRef, where('movieID', '==', movieID), where('movieID', '==', movieID)));
     if (!querySnapshot.empty) {
         toast.error('Movie already added!', {
@@ -23,8 +25,7 @@ async function addToWatched({userID, userWatched, userAt, userName, movieID, rat
             });
         return;
     }
-
-    console.log(userWatched, userAt, userName, movieID, ratingInput, reviewInput)
+    */
 
     addDoc(mediaRef, {
         name: userName,
@@ -32,7 +33,9 @@ async function addToWatched({userID, userWatched, userAt, userName, movieID, rat
         review: reviewInput,
         at: userAt,
         userID: userID,
-        movieID: movieID
+        movieID: movieID,
+        title: title || '',
+        timeStamp: new Date(),
     }).then((newMedia) => {
         updateDoc(userRef, {
             watched: [...userWatched, newMedia.id] 

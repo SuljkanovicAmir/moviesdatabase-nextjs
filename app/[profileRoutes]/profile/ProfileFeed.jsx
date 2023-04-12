@@ -24,13 +24,12 @@ function ProfileFeed(props) {
 
 useEffect(() =>{
 
-    const q = query(watchlistRef,  where("userID", "==", profileID));
+    const q = query(watchlistRef,  where("userID", "==", profileID), orderBy("timeStamp", "desc"));
   
     const unsub = onSnapshot(q, (querySnapshot) => {
         let tempArray = [];
         let deletionArray = [];
     
-
 
         querySnapshot.docChanges().forEach((change) => {
             const doc = change.doc;
@@ -57,7 +56,7 @@ useEffect(() =>{
 
 useEffect(() =>{
 
-    const q = query(watchedRef,  where("userID", "==", profileID));
+    const q = query(watchedRef,  where("userID", "==", profileID), orderBy("timeStamp", "desc"));
 
     const unsub = onSnapshot(q, (querySnapshot) => {
         let tempArray = [];

@@ -12,11 +12,11 @@ function Feed(props) {
     
   const { watchedData, watchlistData, image, at, activeTab } = props;
 
-  console.log(watchedData, watchlistData)
+  console.log(watchlistData)
 
   if (activeTab === 'watched') {
     const watchedContent = watchedData.map((media) => {
-      return <WatchedContent key={media.id} mediaID={media.id} posterID={media.userID} rating={media.rating} review={media.review} at={at} image={image} movieID={media.movieID} watchedData={watchedData} />;
+      return <WatchedContent key={media.id} mediaID={media.id} posterID={media.userID} title={media.title} rating={media.rating} review={media.review} at={at} image={image} movieID={media.movieID} watchedData={watchedData} />;
     });
     return (
       <div className="profile-watched-content-div">
@@ -25,7 +25,7 @@ function Feed(props) {
     );
     } else if (activeTab === 'watchlist') {
     const watchlistContent = watchlistData.map((media) => {
-      return  <WatchlistContent key={media.id} mediaID={media.id}  image={image} movieID={media.movieID} watchlistData={watchlistData} />;
+      return  <WatchlistContent key={media.id} mediaID={media.id}  image={image} movieID={media.movieID} title={media.title} watchlistData={watchlistData} />;
     });
     return <>
           <div className="movie-list-div"> 
