@@ -50,8 +50,8 @@ export default function WatchlistContent ({movieID, title, mediaID}) {
 
         return (
           <div className="watchlist-div">
-            <Link key={content.id} id="watchlist-a"  href={`/movie/${content.id}`}>  
-              <Image className="watchlist poster"src={imagePath + content.poster_path} priority alt={content.title} width={500} height={500}/>     
+            <Link key={content.id} id="watchlist-a"   href={`${content.title ? `/movie/${content.id}` : `/tv/${content.id}`}`}>  
+              <Image className="watchlist poster"src={imagePath + content.poster_path} priority   alt={content.title ? content.title : content.name} width={500} height={500}/>     
             </Link>
             <Image src={TrashIcon} onClick={(e) => deleteWatchlistContent(e)} className="delete-icon" alt="delete" height={24} width={24}/>
           </div>

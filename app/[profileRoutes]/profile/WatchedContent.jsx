@@ -77,6 +77,7 @@ useEffect(() => {
 
   return (
     <div className="profile-content">
+      <div  className={dropdown ? 'dp-backdrop active' : 'dp-backdrop'} onClick={(e) => toggleDropdown(e)}></div>
       <div className="profile-content-header">
         <h1>{content.title || content.name}</h1>
         <div>

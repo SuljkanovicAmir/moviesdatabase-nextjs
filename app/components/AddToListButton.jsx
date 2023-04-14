@@ -45,6 +45,7 @@ export default function AddToListButton({movieID, title, name}) {
 
   return (
     <div className="dropdown">
+      <div  className={isDropdownOpen ? 'dp-backdrop active' : 'dp-backdrop'} onClick={(e) =>   setIsDropdownOpen(false)}></div>
       <div onClick={() => setFormActive(false)} className={isActiveForm ? 'edit-backdrop active' : 'edit-backdrop' }></div>
       <button className="btn" onClick={handleDropdownToggle}>
         <Image src={AddIcon} className='add' alt="add" height={500} width={500} />

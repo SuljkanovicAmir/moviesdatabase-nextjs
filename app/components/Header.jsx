@@ -17,6 +17,21 @@ const Header = React.memo(() => {
   const [isActive, setIsActive] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false);
   const { signout, userName, userImage, userAt, pending  } = useContext(UserContext);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setIsHeaderVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
+
+
 
   const handleDropdown = () => {
     setIsActive(prev => !prev)
@@ -45,7 +60,7 @@ if(pending) {
 
 
       return (
-          <header>
+          <header className={isHeaderVisible ? "header-visible" : "header-hidden"}>
               <nav>
                 <ul>
                   <li>

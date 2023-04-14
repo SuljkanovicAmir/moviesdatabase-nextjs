@@ -470,6 +470,15 @@ header > nav > ul {
   background-color: #e0e0e042;
 }
 
+.header-visible {
+  transform: translateY(0);
+  transition: transform 0.3s ease-out;
+}
+
+.header-hidden {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-out;
+}
 
 .details .backdrop {
   height: 90vh;
@@ -1121,6 +1130,7 @@ input[type="file"] {
   border-radius: 5px;
   background: white;
   padding: 4px;
+  z-index: 3;
 }
 
 .dropdown-item {
@@ -1355,6 +1365,7 @@ input[type="file"] {
 
 .post-dropdown.active {
   transform: translateY(-36px) translateX(20px);
+  z-index: 3;
 }
 
 .post-dropdown {
@@ -1368,6 +1379,7 @@ input[type="file"] {
   text-align: center;
   transform: translateY(-36px) translateX(200%);
   transition: 0.6s ease-in-out;
+  cursor: pointer;
 }
 
 
@@ -1398,6 +1410,45 @@ input[type="file"] {
 .profile-main .movie-list-div {
   height: 420px;
 }
+
+
+
+.dp-backdrop {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgb(0 0 0 / 63%);
+  display: none;
+  top: 0;
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+
+.dp-backdrop.active {
+  display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1758,8 +1809,6 @@ input[type="file"] {
   gap: unset;
 }
 
-
-
 .watchlist-div {
   gap: 5px;
   padding: 5px;
@@ -1778,6 +1827,62 @@ input[type="file"] {
   height: 20px;
   width: auto;
 }
+
+.post-dropdown.active {
+  transform: translateY(0px) translateX(0px);
+}
+
+.post-dropdown,
+.dropdown-menu {
+  position: fixed;
+  padding: 4px 8px;
+  color: white;
+  font-size: 1em;
+  text-align: center;
+  transform: translateY(200%);
+  transition: 0.6s ease-in-out;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  box-shadow: rgb(122 120 120 / 11%) -5px -8px 15px 0px;
+  border-radius: unset;
+}
+
+.dropdown-menu {
+  transform: translateY(0px);
+  height: 120px;
+  transition: 0.6s ease-in-out;
+}
+
+.dropdown-item {
+  padding: 14px 20px;
+  font-size: 1.2em;
+  width: 80%;
+  background: transparent;
+  border: none;
+  color: white;
+  height: 100%;
+}
+
+.dropdown-menu :first-child {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.603);
+}
+
+
+
+
+
+
+
+
+
+
 
   @media screen and (max-width: 340px) {
     .all-movies-tv .movie-grid {
