@@ -87,15 +87,11 @@ body {
   overflow-x: hidden;
 }
 
+
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-    font-family: sans-serif;
+  background-color: black;
+  font-family: sans-serif;
 }
 
 a {
@@ -103,6 +99,10 @@ a {
   text-decoration: none;
 }
 
+.main-div {
+  background: linear-gradient(180deg, #000000, #061527, #041125, #061525);
+  padding-bottom: 100px;
+}
 
 input,
 img,
@@ -123,7 +123,6 @@ div {
 
 main {
   overflow: hidden;
-  margin-bottom: 100px;
 }
 
 
@@ -172,12 +171,15 @@ header > nav > ul {
   border-radius: 8px;
 }
 
-.poster {
+.poster,
+.poster-wide {
   height: 300px;
   width: auto;
   border: 1px solid transparent;
 }
-
+.poster-wide {
+  height: 200px;
+}
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 215px);
@@ -329,7 +331,6 @@ header > nav > ul {
   text-transform: uppercase;
   background-color: rgb(0 0 0 / 21%);
   padding: 3px 0px;
-  transform: translateY(-30px);
   text-align: center;
   color: #ffffffc7;
 }
@@ -344,20 +345,31 @@ header > nav > ul {
   flex-direction: column;
 }
 
-.movie-list {
+.movie-list,
+.movie-list-wide {
   overflow-x: auto;
   display: flex;
   gap: 15px;
   padding: 10px 0px;
 }
+
+.movie-list-wide {
+  gap: 0px;
+}
+
+
 .movie-list-div h3 {
   padding: 0px 0px 5px 10px;
 }
 
-.movie-list > a {
+.movie-list > a,
+.movie-list-wide > a {
   padding-left: 10px;
 }
 
+.movie-list-wide a {
+  min-width: auto;
+}
 
 .movie-list a {
   min-width: 200px;
@@ -366,6 +378,12 @@ header > nav > ul {
 .movie-list .poster:hover {
   border: 1px solid rgba(22, 22, 146, 0.753);
   border-radius: 8px;
+}
+
+.list-description {
+  color: rgba(255, 255, 255, 0.562);
+  font-size: 0.8em;
+  padding: 5px 10px;
 }
 
 
@@ -711,6 +729,7 @@ select {
   background-color: #040309;
   background-image: linear-gradient(180deg, #a8548f00 0%, #5f0c8782 74%);
 }
+
 
 .profile-header {
   height: 330px;
@@ -1144,11 +1163,15 @@ input[type="file"] {
   cursor: pointer;
 }
 
+
+
 .dropdown-menu :first-child {
   border-bottom: 1px solid black;
 }
 
-
+.dropdown-item a {
+  border-bottom: transparent !important;
+}
 
 .watched,
 .watchlist {
@@ -1478,6 +1501,7 @@ input[type="file"] {
   .slide-description {
     font-size: 1.4em;
   }
+
   .movie-list-div h3 {
     font-size: 1em;
   }
@@ -1486,7 +1510,11 @@ input[type="file"] {
     background-color: transparent;
   }
   .movie-list-div {
-    height: 335px;
+    height: 350px;
+    justify-content: center;
+  }
+  .movie-list {
+    gap: unset;
   }
   .poster {
     height: 250px;
@@ -1562,7 +1590,7 @@ input[type="file"] {
     font-size: 1.1em;
   }
   .movie-list a {
-    min-width: 167px;
+    min-width: auto;
   }
 
   .all-movies-tv {
@@ -1572,12 +1600,12 @@ input[type="file"] {
   }
 
   .all-movies-tv .movie-grid {
-    grid-template-columns: repeat(auto-fit, 125px);
+    grid-template-columns: repeat(auto-fit, 120px);
     justify-content: center;
     row-gap: 5px;
   }
   .all-movies-tv .poster {
-    height: 180px;
+    height: 170px;
   }
   .all-movies-tv h1 {
     margin-left: 5%;
@@ -1627,6 +1655,7 @@ input[type="file"] {
   .filters > div {
     width: 60%;
   }
+
   .filters input[type=number],
   select {
     max-width: unset;
@@ -1650,13 +1679,12 @@ input[type="file"] {
     width: 120px;
   }
   
-
   .movie-grid img {
     max-width: 152px;
   }
 
   .movie-grid a {
-    height: 180px;
+    height: 170px;
   }
 
   .profile-nav {
@@ -1783,7 +1811,6 @@ input[type="file"] {
 
 .release-date {
   padding: 1px 0px;
-  transform: translateY(-25px);
 }
 
 .dropdown {
@@ -1884,15 +1911,30 @@ input[type="file"] {
 
 
 
-  @media screen and (max-width: 340px) {
+  @media screen and (max-width: 360px) {
     .all-movies-tv .movie-grid {
-      grid-template-columns: repeat(auto-fit, 150px);
+      grid-template-columns: repeat(auto-fit, 100px);
       justify-content: center;
       row-gap: 5px;
     }
     .all-movies-tv .poster {
-      height: 200px;
+      height: 145px;
     }
+    .movie-grid a {
+      height: 145px;
+    }
+    .movie-list-div {
+      height: 300px;
+    }
+    .movie-list a {
+      min-width: auto;
+    }
+    .poster {
+      height: 210px;
+    }
+    .poster-wide {
+      height: 140px;
+  }
   }
 }
 

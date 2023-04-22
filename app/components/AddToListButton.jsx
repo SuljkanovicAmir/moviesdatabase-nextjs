@@ -4,10 +4,12 @@ import AddIcon from '../../public/add.png'
 import Image from 'next/image';
 import { UserContext } from '../context/UserContext';
 import AddToWatchedForm from './AddToWatchedForm';
+import Link from 'next/link';
 
 
 export default function AddToListButton({movieID, title, name}) {
-  const {userName, userAt, userID, userToWatch, userWatched} = useContext(UserContext);
+
+  const {userName, userAt, userID, userToWatch, currentUser} = useContext(UserContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isActiveForm, setFormActive] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -41,7 +43,7 @@ export default function AddToListButton({movieID, title, name}) {
             .catch((err) => console.log(err));   
 	};
 
-
+  console.log(currentUser)
 
   return (
     <div className="dropdown">
@@ -51,14 +53,31 @@ export default function AddToListButton({movieID, title, name}) {
         <Image src={AddIcon} className='add' alt="add" height={500} width={500} />
       </button>
       {isDropdownOpen && (
-        <div className="dropdown-menu">
+        currentUser ? (
+          <div className="dropdown-menu">
           <button className="dropdown-item" onClick={(e) => handleAddToWatchlistClick(e)}>
            Watchlist
           </button>
           <button className="dropdown-item" onClick={(e) => handleAddToWatchedClick(e)}>
             Watched
           </button>
-        </div>
+         </div>
+        ) : (
+          <div className="dropdown-menu">
+            <button className="dropdown-item">
+              <Link href="/signin">
+               Watchlist
+              </Link>  
+            </button>
+            <button className="dropdown-item">
+              <Link href="/signin">
+               Watched
+              </Link> 
+            </button>
+           </div>
+        )
+      
+      
       )}
        <AddToWatchedForm showToast={showToast} setShowToast={setShowToast} isActiveForm={isActiveForm} setFormActive={setFormActive} title={title} movieID={movieID}/>
       

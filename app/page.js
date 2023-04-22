@@ -15,6 +15,12 @@ const Trending = dynamic(() => import("./components/Trending"), {
   ssr: false,
 });
 
+const TrendingTV = dynamic(() => import("./components/TrendingTV"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
+
+
 const TopRatedTV = dynamic(() => import("./components/TRatedTV"), {
   loading: () => <Loading />,
   ssr: false,
@@ -45,6 +51,7 @@ export default async function Home() {
   return (
     <main>
       <Trending mediaType="all"/>
+      <div className="main-div">
       <UpcomingMovies />
       {res.results.length > 0 && (
         <div className="movie-list-div">
@@ -63,9 +70,11 @@ export default async function Home() {
           </div>
         </div>
       )}
+      <TrendingTV />
       <TopRated />
       <TopRatedTV />
-      <OnAirTV />
+      <OnAirTV /> 
+      </div>
     </main>
   );
 }
