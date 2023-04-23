@@ -87,7 +87,10 @@ body {
   overflow-x: hidden;
 }
 
-
+::-webkit-scrollbar
+{
+display: none;
+}
 
 body {
   background-color: black;
@@ -343,6 +346,7 @@ header > nav > ul {
   padding: 15px 0px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .movie-list,
@@ -1454,6 +1458,53 @@ input[type="file"] {
   display: flex;
 }
 
+.scroll-button-left,
+.scroll-button-right {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ cursor: pointer;
+ border-radius: 100px;
+ padding: 10px;
+ background-color: #0000003f;
+
+}
+
+.scroll-button-left:hover,
+.scroll-button-right:hover {
+  background-color: #00000094;
+  border-radius: 100px;
+  transform: scale(1.1);
+} 
+.scroll-button-left:hover {
+  transform: rotate(180deg) scale(1.1);
+}
+
+
+.scroll-button-left {
+  position: absolute;
+  top: 40%;
+  left: 1%;
+  transform: rotate(180deg);
+}
+
+.scroll-button-right {
+  position: absolute;
+  top: 40%;
+  right: 1%;
+}
+
+
+.scroll-button-left > img,
+.scroll-button-right > img {
+  filter: invert(1);
+  height: 24px;
+  width: 24px;
+}
+
+
+
+
 
 
 
@@ -1486,10 +1537,7 @@ input[type="file"] {
 
 
 @media screen and (max-width: 764px) {
-  ::-webkit-scrollbar
-  {
-  display: none;
-  }
+
 
   header,
   header > nav {
@@ -1901,6 +1949,10 @@ input[type="file"] {
   border-bottom: 1px solid rgba(128, 128, 128, 0.603);
 }
 
+.scroll-button-left,
+.scroll-button-right {
+ display: none;
+}
 
 
 
@@ -1924,7 +1976,7 @@ input[type="file"] {
       height: 145px;
     }
     .movie-list-div {
-      height: 300px;
+      height: 320px;
     }
     .movie-list a {
       min-width: auto;

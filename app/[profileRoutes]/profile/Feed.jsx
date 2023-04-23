@@ -12,7 +12,6 @@ function Feed(props) {
     
   const { watchedData, watchlistData, image, at, activeTab } = props;
 
-  console.log(watchlistData)
 
   if (activeTab === 'watched') {
     const watchedContent = watchedData.map((media) => {

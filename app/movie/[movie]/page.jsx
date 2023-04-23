@@ -12,9 +12,9 @@ const SimilarMovies = dynamic(() => import("./similarMovies/page"), {
 
 export default async function MovieDetail ( {params}) {
     const { movie } = params
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w1280'
    
-    const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 3600}}) 
+    const data = await fetch(`https://api.themoviedb.org/3/movie/${movie}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 43200}}, {cache: 'force-cache'}) 
     const res = await data.json()
 
     return (

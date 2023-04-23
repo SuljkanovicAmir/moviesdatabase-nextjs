@@ -4,7 +4,7 @@ import Link from "next/link";
 
 
 async function fetchSimilar(tv) {
-    const data = await fetch(`https://api.themoviedb.org/3/tv/${tv}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`,  {next: { revalidate: 3600 }}) 
+    const data = await fetch(`https://api.themoviedb.org/3/tv/${tv}/similar?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`,  {next: { revalidate: 43200 }}, {cache: 'force-cache'}) 
     const res = await data.json()
     const resResults = res.results;
     return resResults;
@@ -20,7 +20,7 @@ export default async function SimilarTV( { params }) {
     const res = await fetchSimilar(tv);
 
    
-    const imagePath = 'https://image.tmdb.org/t/p/w200'
+    const imagePath = 'https://image.tmdb.org/t/p/w185'
     
     return (
         <div className="movie-list-div"> 

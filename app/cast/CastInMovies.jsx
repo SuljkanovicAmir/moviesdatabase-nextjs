@@ -5,7 +5,8 @@ import Link from "next/link";
 
 async function fetchCombinedCredits(cast) {
     const data = await fetch(
-      `https://api.themoviedb.org/3/person/${cast}/combined_credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=1`
+      `https://api.themoviedb.org/3/person/${cast}/combined_credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=1`,
+      { next: { revalidate: 43200 } }, {cache: 'force-cache'}
     );
     const res = await data.json();
     const sortedCast = res.cast.sort((a, b) => b.vote_average - a.vote_average);
@@ -18,7 +19,7 @@ export default async function({ params }) {
     const {cast} = params
 
     const res = await fetchCombinedCredits(cast)
-    const imagePath = 'https://image.tmdb.org/t/p/w200'
+    const imagePath = 'https://image.tmdb.org/t/p/w185'
 
 
     return (

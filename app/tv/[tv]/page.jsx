@@ -12,7 +12,7 @@ const SimilarTV = dynamic(() => import("./similarTV/page"), {
 
 export default async function TvDetails ( {params}) {
     const { tv } = params
-    const imagePath = 'https://image.tmdb.org/t/p/original'
+    const imagePath = 'https://image.tmdb.org/t/p/w1280'
 
     const res = await fetchTvDetails(tv);
  
@@ -22,7 +22,7 @@ export default async function TvDetails ( {params}) {
                 <div className="backdrop-div">
                     <div className="backdrop"></div>
                     <AddToListButton movieID={tv} />
-                    <Image className="detailed-poster" quality={100} priority src={imagePath + res.backdrop_path} alt={res.name} width={1000} height={1000}/>
+                    <Image className="detailed-poster"  priority src={imagePath + res.backdrop_path} alt={res.name} width={1000} height={1000}/>
                 </div>
                 <div className="details-info">
                     <div className="info">
@@ -58,6 +58,6 @@ export default async function TvDetails ( {params}) {
 
 
 async function fetchTvDetails(tv) {
-    const data = await fetch(`https://api.themoviedb.org/3/tv/${tv}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 3600}}) 
+    const data = await fetch(`https://api.themoviedb.org/3/tv/${tv}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`, {next: {revalidate: 43200}}) 
     return data.json()
 }

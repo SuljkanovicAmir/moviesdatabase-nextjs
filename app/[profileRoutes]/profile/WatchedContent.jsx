@@ -9,7 +9,7 @@ import DotsIcon from "../../../public/dots.svg";
 async function fetchContent(media, movieID) {
   const response = await fetch(
     `https://api.themoviedb.org/3/${media}/${movieID}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 43200 } }, {cache: 'force-cache'}
   );
   return await response.json();
 }
@@ -27,7 +27,7 @@ export default function WatchedContent({
 
 {
   const { userID, userWatched } = useContext(UserContext);
-  const imagePath = "https://image.tmdb.org/t/p/w200";
+  const imagePath = "https://image.tmdb.org/t/p/w185";
   const [content, setContent] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [dropdown, setDropdown] = useState(false);

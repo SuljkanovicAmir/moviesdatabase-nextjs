@@ -6,7 +6,8 @@ import CastInMovies from '../CastInMovies';
 
 async function fetchPerson(cast) {
   const data = await fetch(
-    `https://api.themoviedb.org/3/person/${cast}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
+    `https://api.themoviedb.org/3/person/${cast}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+    { next: { revalidate: 43200 } }, {cache: 'force-cache'}
   );
   const res = await data.json();
   return res;

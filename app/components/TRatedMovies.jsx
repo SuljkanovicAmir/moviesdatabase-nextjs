@@ -3,7 +3,7 @@ import Link from "next/link";
 
 
 async function fetchTrending() {
-    const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`,  {next: { revalidate: 3600 },}) 
+    const data = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`,  {next: { revalidate: 43200 }}, {cache: 'force-cache'}) 
     return data.json()
 }
 
@@ -14,7 +14,7 @@ async function fetchTrending() {
 export default async function TopRated() {
     const res = await fetchTrending();
 
-    const imagePath = 'https://image.tmdb.org/t/p/w200'
+    const imagePath = 'https://image.tmdb.org/t/p/w185'
 
 
     return (

@@ -16,7 +16,7 @@ export default function AllTv() {
   const [isActive, setIsActive] = useState(false)
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const imagePath = "https://image.tmdb.org/t/p/w200";
+  const imagePath = "https://image.tmdb.org/t/p/w185";
 
   useEffect(() => {
     async function fetchtv() {
@@ -30,7 +30,7 @@ export default function AllTv() {
       if (endYear) {
         url += `&first_air_date.lte=${endYear}-12-31`;
       }
-      const response = await fetch(url, { next: { revalidate: 3600 } });
+      const response = await fetch(url, { next: { revalidate: 43200 } }, {cache: 'force-cache'});
       const data = await response.json();
       setTv(data.results);
       setTotalPages(data.total_pages);

@@ -11,7 +11,7 @@ export default function Trending({mediaType}) {
 
   useEffect(() => {
     const fetchImages = async () => {
-      const upcData = await fetch(`https://api.themoviedb.org/3/trending/${mediaType}/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,  {next: { revalidate: 3600 }}) 
+      const upcData = await fetch(`https://api.themoviedb.org/3/trending/${mediaType}/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,  {next: { revalidate: 43200 }}, {cache: 'force-cache'}) 
       const upcRes = await upcData.json();
       setImages(upcRes.results);
     };

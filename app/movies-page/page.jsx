@@ -31,7 +31,7 @@ export default function AllMovies() {
       if (endYear) {
         url += `&primary_release_date.lte=${endYear}-12-31`;
       }
-      const response = await fetch(url, { next: { revalidate: 3600 } });
+      const response = await fetch(url, { next: { revalidate: 43200 } }, {cache: 'force-cache'});
       const data = await response.json();
 
       setMovies(data.results);

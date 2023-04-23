@@ -44,7 +44,7 @@ const PopularMovies = dynamic(() => import("./components/PopularMovies"), {
 export default async function Home() {
   const data = await fetch(
     `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-    {next: { revalidate: 3600 }}
+    {next: { revalidate: 43200 }}
   );
   const res = await data.json();
 

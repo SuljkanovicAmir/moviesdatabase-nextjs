@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 async function fetchTrending() {
   const data = await fetch(
     `https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-    { next: { revalidate: 3600 } },
+    { next: { revalidate: 43200 } },
     { cache: "force-cache" }
   );
   const res = await data.json();
@@ -21,7 +21,7 @@ export default function Search() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [data, setData] = useState([]);
-  const imagePath = "https://image.tmdb.org/t/p/w200";
+  const imagePath = "https://image.tmdb.org/t/p/w185";
 
   useEffect(() => {
     async function fetchData() {
@@ -35,7 +35,7 @@ export default function Search() {
   const handleSearch = async () => {
     const url = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${query}&include_adult=false&include_video=false&media_type=movie,tv`;
     try {
-      const response = await fetch(url, { next: { revalidate: 3600 } });
+      const response = await fetch(url, { next: { revalidate: 43200 } });
       const data = await response.json();
       const filteredResults = data.results.filter(
         (result) => result.media_type !== "person"

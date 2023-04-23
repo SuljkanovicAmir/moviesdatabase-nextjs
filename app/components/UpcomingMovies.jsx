@@ -4,7 +4,7 @@ import Link from "next/link";
 
 async function fetchUpcoming() {
     const today = new Date().toISOString().slice(0, 10);
-    const data = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&region=US&language=en-US&release_date.gte=${today}`,  {next: { revalidate: 3600 },}) 
+    const data = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.NEXT_PUBLIC_API_KEY}&region=US&language=en-US&release_date.gte=${today}`,  {next: { revalidate: 43200 },}, {cache: 'force-cache'}) 
     const res = await data.json()
     const resResults = res.results;
     return resResults;
@@ -16,7 +16,7 @@ export default async function UpcomingMovies() {
 
     const res = await fetchUpcoming();
 
-    const imagePath = 'https://image.tmdb.org/t/p/w200'
+    const imagePath = 'https://image.tmdb.org/t/p/w185'
 
 
     return (

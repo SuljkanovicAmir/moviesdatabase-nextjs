@@ -3,7 +3,7 @@ import Link from "next/link";
 
 
 async function fetchCast(mediaId, mediaType) {
-    const data = await fetch(`https://api.themoviedb.org/3/${mediaType}/${mediaId}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&limit=10`,  {next: { revalidate: 3600 },}) 
+    const data = await fetch(`https://api.themoviedb.org/3/${mediaType}/${mediaId}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&limit=10`,  {next: { revalidate: 43200 },}, {cache: 'force-cache'}) 
     const res = await data.json()
     const resResults = res.cast;
     return resResults;
@@ -15,7 +15,7 @@ export default async function MediaCast( { mediaId, mediaType }) {
    
 
     const res = await fetchCast(mediaId, mediaType);
-    const imagePath = 'https://image.tmdb.org/t/p/w200'
+    const imagePath = 'https://image.tmdb.org/t/p/w185'
     
 
     return (

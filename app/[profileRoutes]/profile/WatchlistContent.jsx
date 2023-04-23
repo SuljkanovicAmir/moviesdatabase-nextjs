@@ -10,7 +10,7 @@ import TrashIcon from '../../../public/trash.svg'
 async function fetchContent(media, movieID) {
     const response = await fetch(
         `https://api.themoviedb.org/3/${media}/${movieID}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-        { next: { revalidate: 3600 } }
+        { next: { revalidate: 43200 } }, {cache: 'force-cache'}
       );
       return await response.json();
   }
@@ -18,7 +18,7 @@ async function fetchContent(media, movieID) {
 
 export default function WatchlistContent ({movieID, title, mediaID}) {
 
-    const imagePath = "https://image.tmdb.org/t/p/w200";
+    const imagePath = "https://image.tmdb.org/t/p/w185";
     const [content, setContent] = useState(null);
     const { userID, userToWatch } = useContext(UserContext);
 

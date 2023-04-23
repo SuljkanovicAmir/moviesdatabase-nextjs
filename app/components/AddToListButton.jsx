@@ -43,7 +43,6 @@ export default function AddToListButton({movieID, title, name}) {
             .catch((err) => console.log(err));   
 	};
 
-  console.log(currentUser)
 
   return (
     <div className="dropdown">
