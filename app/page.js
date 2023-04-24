@@ -47,9 +47,11 @@ const OneMovie = dynamic(() => import("./components/OneMovie"), {
 
 
 export const metadata = {
+  metadataBase: new URL('https://postimg.cc'),
   openGraph: {
     title: 'Cineboxd',
     description: 'Movies and TV',
+    images: "/jWTdFPyz"
   },
 };
 

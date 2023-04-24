@@ -14,9 +14,6 @@ const poppins = Poppins({
 })
 
 
-
-
-
 export default function RootLayout({ children }) {
   
   useEffect(() => {
