@@ -40,7 +40,7 @@ export default function Trending({mediaType}) {
     return () => clearInterval(timer);
   }, [current, interval, images]);
 
-  const imagePath = "https://image.tmdb.org/t/p/original";
+  const imagePath = "https://image.tmdb.org/t/p/w1280";
 
 
   return (
