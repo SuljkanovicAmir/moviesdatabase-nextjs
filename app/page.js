@@ -46,6 +46,14 @@ const OneMovie = dynamic(() => import("./components/OneMovie"), {
 });
 
 
+export const metadata = {
+  openGraph: {
+    title: 'Cineboxd',
+    description: 'Movies and TV',
+  },
+};
+
+
 export default async function Home() {
  
   return (
