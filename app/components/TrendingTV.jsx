@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import Arrow from '../../public/arrow.png'
-
+import ScrollButtons from '../components/reusables/ScrollButtons'
 
 
 export default function TrendingTV() {
@@ -29,33 +28,8 @@ export default function TrendingTV() {
     const imagePath = 'https://image.tmdb.org/t/p/w300'
 
 
-    function handleScrollLeft() {
-        if (movieListRef.current) {
-            const scrollAmount = movieListRef.current.offsetWidth;
-            setScrollPosition(scrollPosition - scrollAmount);
-            movieListRef.current.scrollTo({
-                top: 0,
-                left: movieListRef.current.scrollLeft - scrollAmount,
-                behavior: "smooth"
-            });
-        }
-    }
-
-
-    function handleScrollRight() {
-        if (movieListRef.current) {
-          const scrollAmount = movieListRef.current.offsetWidth;
-          setScrollPosition(scrollPosition + scrollAmount);
-          movieListRef.current.scrollTo({
-            top: 0,
-            left: movieListRef.current.scrollLeft + scrollAmount,
-            behavior: "smooth"
-          });
-        }
-      }
-
     return (
-        <div className="movie-list-div"> 
+        <div className="movie-list-div wide"> 
             <h3>Trending TV Shows</h3>
             <p className="list-description">Looking for your next binge-worthy show? Our trending TV shows list is the perfect place to start.</p>
            
@@ -66,15 +40,12 @@ export default function TrendingTV() {
                 </Link>
             ))}
             </div>
-           
-             <div className="button-container">
-                    <div className="scroll-button-left" onClick={() => handleScrollLeft()}>
-                        <Image src={Arrow} width={50} height={50} alt="arrow" />
-                    </div>
-                    <div className="scroll-button-right" onClick={() => handleScrollRight()}>
-                        <Image src={Arrow} width={50} height={50} alt="arrow" />
-                    </div>
-            </div>
+            <ScrollButtons
+                scrollPosition={scrollPosition}
+                setScrollPosition={setScrollPosition}
+                movieListRef={movieListRef}
+                movieListWidth={movieListWidth}
+            />
         </div>
     );
 }

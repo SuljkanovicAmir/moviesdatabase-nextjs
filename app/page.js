@@ -3,8 +3,7 @@ import Loading from "./components/Loading";
 import dynamic from "next/dynamic";
 
 const UpcomingMovies = dynamic(
-  () => import("./components/UpcomingMovies"),
-  {
+  () => import("./components/UpcomingMovies"), {
     loading: () => <Loading />,
     ssr: false,
   }
@@ -41,39 +40,26 @@ const PopularMovies = dynamic(() => import("./components/PopularMovies"), {
   ssr: false,
 });
 
-export default async function Home() {
-  const data = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-    {next: { revalidate: 43200 }}
-  );
-  const res = await data.json();
+const OneMovie = dynamic(() => import("./components/OneMovie"), {
+  loading: () => <Loading />,
+  ssr: false,
+});
 
+
+export default async function Home() {
+ 
+  
   return (
     <main>
       <Trending mediaType="all"/>
       <div className="main-div">
-      <UpcomingMovies />
-      {res.results.length > 0 && (
-        <div className="movie-list-div">
-          <h3>Popular Movies</h3>
-          <div className="movie-list">
-            {res.results.map((movie) => (
-              <PopularMovies
-                id={movie.id}
-                title={movie.title}
-                poster_path={movie.poster_path}
-                release_date={movie.release_date}
-                votes={movie.vote_average}
-                genres={movie}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-      <TrendingTV />
-      <TopRated />
-      <TopRatedTV />
-      <OnAirTV /> 
+        <UpcomingMovies />
+        <PopularMovies />
+        <TrendingTV />
+        <TopRated />
+        <TopRatedTV />
+        <OneMovie />
+        <OnAirTV /> 
       </div>
     </main>
   );

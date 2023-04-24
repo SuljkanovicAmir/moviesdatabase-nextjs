@@ -58,7 +58,6 @@ if(pending) {
 }
 
 
-
       return (
           <header className={isHeaderVisible ? "header-visible" : "header-hidden"}>
               <nav>
@@ -84,7 +83,6 @@ if(pending) {
                       </Link>
                     </li> <>
                       {userName ?
-                     
                       <li className='profile-icon-div'>
                         <div onClick={handleDropdown} className='profile-nav-image' >
                             <Image src={userImage} alt='profilepic' priority className={`${!imageLoaded ? "" : "transparent"}`} onLoad={() => imageLoad} width={100} height={100}/>
