@@ -7,11 +7,20 @@ import Header from './components/Header';
 import { Flip, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
+import { Metadata } from 'next';
 
 const poppins = Poppins({
   weight: '400',
   subsets: ['latin'],
 })
+
+
+export const metadata = {
+  title: 'ass',
+  openGraph: {
+    title: 'Blog',
+  },
+};
 
 export default function RootLayout({ children }) {
   

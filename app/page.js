@@ -46,6 +46,7 @@ const OneMovie = dynamic(() => import("./components/OneMovie"), {
 });
 
 
+
 export default async function Home() {
  
   
