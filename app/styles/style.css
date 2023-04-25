@@ -1489,7 +1489,8 @@ input[type="file"] {
   transform: rotate(180deg);
 }
 
-.movie-list-div.wide  .scroll-button-left, .scroll-button-right {
+.movie-list-div.wide .scroll-button-left, 
+.movie-list-div.wide .scroll-button-right {
   top: 40%;
 }
 
